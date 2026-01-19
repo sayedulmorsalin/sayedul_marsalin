@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Md. Sayedul Marsalin</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          fontFamily: {
+            poppins: ["Poppins", "sans-serif"],
+          },
+        },
+      };
+    </script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body class="font-poppins bg-gray-100 text-gray-800">
+    <div class="flex">
+      <!-- SIDEBAR -->
+      <aside
+        class="fixed h-screen w-20 bg-white shadow flex flex-col items-center py-8 space-y-8"
+      >
+        <a href="#home"><i class="fas fa-house text-purple-600"></i></a>
+        <a href="#about"><i class="fas fa-user"></i></a>
+        <a href="#skills"><i class="fas fa-code"></i></a>
+        <a href="#projects"><i class="fas fa-folder"></i></a>
+        <a href="#contact"><i class="fas fa-envelope"></i></a>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="ml-20 w-full p-8">
+        <!-- HERO + PROFILE -->
+        <section id="home" class="grid lg:grid-cols-3 gap-8 items-start">
+          <!-- PROFILE CARD -->
+          <div class="bg-white rounded-2xl shadow p-6 text-center">
+            <div class="h-24 bg-purple-500 rounded-xl relative">
+              <img
+                src="https://avatars.githubusercontent.com/u/164027880?…00&u=16fa056e5965712358894aea26140f3520ca8392&v=4"
+                class="w-24 h-24 rounded-full border-4 border-white absolute left-1/2 -bottom-12 -translate-x-1/2"
+              />
+            </div>
+
+            <h2 class="mt-14 font-bold text-lg">Md. Sayedul Marsalin</h2>
+            <p class="text-purple-600 text-sm">Flutter Developer</p>
+            <p class="text-gray-500 text-sm mt-1">
+              <i class="fas fa-location-dot"></i> Bangladesh
+            </p>
+
+            <div class="flex justify-center gap-4 mt-4 text-gray-600">
+              <div class="flex justify-center gap-4 mt-4 text-gray-600">
+                <a
+                  href="https://github.com/sayedulmorsalin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-purple-600 transition"
+                >
+                  <i class="fab fa-github text-xl"></i>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/sayedul-marsalin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-purple-600 transition"
+                >
+                  <i class="fab fa-linkedin text-xl"></i>
+                </a>
+
+                <a
+                  href="https://www.facebook.com/sayadul.morsalin.94"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-purple-600 transition"
+                >
+                  <i class="fab fa-facebook text-xl"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="flex gap-3 mt-6">
+              <button class="flex-1 bg-purple-600 text-white py-2 rounded-lg">
+                Resume
+              </button>
+              <button class="flex-1 border py-2 rounded-lg">Contact</button>
+            </div>
+          </div>
+
+          <!-- INTRO -->
+          <div id="about" class="lg:col-span-2">
+            <h1 class="text-3xl font-bold">
+              Hey <span class="text-purple-600">there</span> 👋
+            </h1>
+            <p class="text-gray-600 mt-4 max-w-2xl">
+              Motivated Flutter Developer with experience building
+              cross-platform applications using Flutter, Firebase, and REST
+              APIs.
+            </p>
+
+            <!-- STATS -->
+            <!-- STATS -->
+            <div class="grid md:grid-cols-3 gap-4 mt-8">
+              <div class="bg-white p-5 rounded-xl shadow text-center">
+                <p class="text-2xl font-bold">1.5+</p>
+                <p class="text-sm text-gray-500">Years Experience</p>
+              </div>
+              <div class="bg-white p-5 rounded-xl shadow text-center">
+                <p class="text-2xl font-bold">20+</p>
+                <p class="text-sm text-gray-500">Projects</p>
+              </div>
+              <div class="bg-white p-5 rounded-xl shadow text-center">
+                <p class="text-2xl font-bold">4+</p>
+                <p class="text-sm text-gray-500">Completed Projects</p>
+              </div>
+            </div>
+
+            <!-- QUICK INFO PANEL -->
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+              <!-- Left: What I Do -->
+              <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="font-semibold text-purple-600 mb-3">What I Do</h3>
+                <ul class="space-y-2 text-gray-600 text-sm">
+                  <li>• Flutter App Development</li>
+                  <li>• Firebase Backend Integration</li>
+                  <li>• REST API Integration</li>
+                  <li>• UI/UX Implementation</li>
+                  <li>• Performance Optimization</li>
+                </ul>
+              </div>
+
+              <!-- Right: Availability & Stack -->
+              <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="font-semibold text-purple-600 mb-3">
+                  Currently Available
+                </h3>
+
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                  <span class="text-sm text-gray-600"
+                    >Open for Freelance & Remote Work</span
+                  >
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
+                    >Flutter</span
+                  >
+                  <span
+                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
+                    >Firebase</span
+                  >
+                  <span
+                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
+                    >REST API</span
+                  >
+                  <span
+                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
+                    >Dart</span
+                  >
+                  <span
+                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
+                    >Git</span
+                  >
+                </div>
+
+                <a
+                  href="#contact"
+                  class="inline-block mt-4 px-5 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 transition"
+                >
+                  Hire Me
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="mt-20">
+          <h2 class="text-2xl font-bold text-purple-600 mb-8">My Skills</h2>
+
+          <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Skill 1 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="26"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/dart.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">Dart</p>
+              <p class="text-sm text-gray-500">90%</p>
+            </div>
+
+            <!-- Skill 2 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="66"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/c++.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">C++</p>
+              <p class="text-sm text-gray-500">75%</p>
+            </div>
+
+            <!-- Skill 3 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="66"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/java.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">Java</p>
+              <p class="text-sm text-gray-500">75%</p>
+            </div>
+
+            <!-- Skill 4 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="105"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/python.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">Python</p>
+              <p class="text-sm text-gray-500">60%</p>
+            </div>
+
+            <!-- Skill 5 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="26"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/flutter.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">Flutter</p>
+              <p class="text-sm text-gray-500">90%</p>
+            </div>
+
+            <!-- Skill 6 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="132"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/net.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">.NET</p>
+              <p class="text-sm text-gray-500">50%</p>
+            </div>
+
+            <!-- Skill 7 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="105"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/node.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">Node.js</p>
+              <p class="text-sm text-gray-500">60%</p>
+            </div>
+
+            <!-- Skill 8 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="132"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/react.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">React</p>
+              <p class="text-sm text-gray-500">50%</p>
+            </div>
+
+            <!-- Skill 9 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="26"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/firebase.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">Firebase</p>
+              <p class="text-sm text-gray-500">90%</p>
+            </div>
+
+            <!-- Skill 10 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="52"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/mongodb.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">MongoDB</p>
+              <p class="text-sm text-gray-500">80%</p>
+            </div>
+
+            <!-- Skill 11 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="80"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/sqlite.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">SQLite</p>
+              <p class="text-sm text-gray-500">70%</p>
+            </div>
+
+            <!-- Skill 12 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="52"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/mysql.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">MySql</p>
+              <p class="text-sm text-gray-500">80%</p>
+            </div>
+
+            <!-- Skill 13 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="105"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/pp.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">adobe premiere pro</p>
+              <p class="text-sm text-gray-500">60%</p>
+            </div>
+
+            <!-- Skill 14 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="132"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/blender.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">Blender</p>
+              <p class="text-sm text-gray-500">50%</p>
+            </div>
+
+            <!-- Skill 15 -->
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+              <div class="relative w-24 h-24 mx-auto">
+                <svg class="w-full h-full -rotate-90">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#e5e7eb"
+                    stroke-width="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="42"
+                    stroke="#9333ea"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="264"
+                    stroke-dashoffset="158"
+                  />
+                </svg>
+                <img
+                  src="assets/logo/unity.png"
+                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
+                />
+              </div>
+              <p class="mt-3 font-semibold">Unity</p>
+              <p class="text-sm text-gray-500">40%</p>
+            </div>
+
+            <!-- Skill 16 -->
+          </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="mt-20">
+          <h2 class="text-2xl font-bold text-purple-600 mb-8">Projects</h2>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow p-5">
+              <h3 class="font-semibold">Gallery App</h3>
+              <p class="text-sm text-gray-500 mt-2">
+                Flutter gallery app with permission handling.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-5">
+              <h3 class="font-semibold">IoT Controller</h3>
+              <p class="text-sm text-gray-500 mt-2">
+                Control ESP8266 devices using Google Assistant.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-5">
+              <h3 class="font-semibold">Portfolio Website</h3>
+              <p class="text-sm text-gray-500 mt-2">
+                Responsive portfolio using Tailwind CSS.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="mt-20 grid md:grid-cols-2 gap-8">
+          <!-- GOOGLE FORM -->
+          <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-xl font-bold text-purple-600 mb-4">Contact Me</h2>
+
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSc1UHs772EWZJLtfUOoXeY6PBfott_95gZqXlqlWcIhvz9TvA/viewform?embedded=true"
+              width="100%"
+              height="520"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              class="rounded-lg"
+            >
+              Loading…
+            </iframe>
+          </div>
+
+          <!-- CONTACT INFO + SOCIAL -->
+          <div class="bg-white p-8 rounded-xl shadow">
+            <h3 class="text-lg font-semibold text-purple-600 mb-4">
+              Contact Info
+            </h3>
+
+            <p class="mb-3">
+              <i class="fas fa-envelope text-purple-600 mr-2"></i>
+              sayadulmorsalin123@gmail.com
+            </p>
+
+            <p class="mb-6">
+              <i class="fas fa-phone text-purple-600 mr-2"></i>
+              +8801775876544
+            </p>
+
+            <div class="flex gap-4 text-2xl text-gray-600">
+              <a
+                href="https://github.com/sayedulmorsalin"
+                target="_blank"
+                class="hover:text-purple-600"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/sayedul-marsalin"
+                target="_blank"
+                class="hover:text-purple-600"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/sayadul.morsalin.94"
+                target="_blank"
+                class="hover:text-purple-600"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <footer class="mt-20 text-center text-gray-500 text-sm">
+          © 2026 Md. Sayedul Marsalin. All rights reserved.
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
