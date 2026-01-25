@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Md. Sayedul Marsalin</title>
+    <title>Md. Sayedul Marsalin | Flutter Developer</title>
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,15 +16,52 @@
 
     <!-- Google Font -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
       tailwind.config = {
         theme: {
-          fontFamily: {
-            poppins: ["Poppins", "sans-serif"],
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+            },
+            colors: {
+              primary: "#7c3aed",
+              secondary: "#10b981",
+              accent: "#f59e0b",
+              dark: "#1f2937",
+              light: "#f8fafc",
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+              'slide-up': 'slide-up 0.8s ease-out',
+              'bounce-slow': 'bounce-slow 3s infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              'pulse-glow': {
+                '0%, 100%': { opacity: 1 },
+                '50%': { opacity: 0.7 },
+              },
+              'slide-up': {
+                '0%': { transform: 'translateY(30px)', opacity: 0 },
+                '100%': { transform: 'translateY(0)', opacity: 1 },
+              },
+              'bounce-slow': {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
           },
         },
       };
@@ -34,816 +71,836 @@
       html {
         scroll-behavior: smooth;
       }
+      body {
+        background: linear-gradient(135deg, #a798eb 0%, #76a9dd 100%);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #7c3aed 0%, #10b981 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .sidebar {
+        background: linear-gradient(180deg, rgba(124, 58, 237, 0.95) 0%, rgba(124, 58, 237, 0.85) 100%);
+        backdrop-filter: blur(10px);
+      }
+      .sidebar a {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      .sidebar a::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .sidebar a.active::after {
+        opacity: 1;
+      }
+      .profile-bg {
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        overflow: visible;   
+      }
+      .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+      }
+      .skill-circle {
+        position: relative;
+        width: 100px;
+        height: 100px;
+      }
+      .skill-circle svg {
+        transform: rotate(-90deg);
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          background: linear-gradient(90deg, rgba(124, 58, 237, 0.95) 0%, rgba(124, 58, 237, 0.85) 100%);
+          position: fixed;
+          bottom: 0;
+          top: auto;
+          height: 70px;
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-around;
+          padding: 0.5rem 0;
+          z-index: 50;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar a::after {
+          bottom: auto;
+          top: -10px;
+        }
+        main {
+          margin-bottom: 70px !important;
+          padding-top: 1.5rem;
+        }
+      }
+      .project-card {
+        position: relative;
+        overflow: hidden;
+      }
+      .project-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #7c3aed, #10b981);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+      }
+      .project-card:hover::before {
+        transform: scaleX(1);
+      }
+      .type-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 10;
+      }
     </style>
   </head>
 
-  <body class="font-poppins bg-gray-100 text-gray-800">
-    <div class="flex">
-      <!-- SIDEBAR -->
-      <aside
-        class="fixed h-screen w-20 bg-white shadow flex flex-col items-center py-8 space-y-8"
-      >
-        <a href="#home"><i class="fas fa-house text-purple-600"></i></a>
-        <a href="#about"><i class="fas fa-user"></i></a>
-        <a href="#skills"><i class="fas fa-code"></i></a>
-        <a href="#projects"><i class="fas fa-folder"></i></a>
-        <a href="#contact"><i class="fas fa-envelope"></i></a>
-      </aside>
-
-      <!-- MAIN CONTENT -->
-      <main class="ml-20 w-full p-8">
-        <!-- HERO + PROFILE -->
-        <section id="home" class="grid lg:grid-cols-3 gap-8 items-start">
-          <!-- PROFILE CARD -->
-          <div class="bg-white rounded-2xl shadow p-6 text-center">
-            <div class="h-24 bg-purple-500 rounded-xl relative">
-              <img
-                src="https://avatars.githubusercontent.com/u/164027880?…00&u=16fa056e5965712358894aea26140f3520ca8392&v=4"
-                class="w-24 h-24 rounded-full border-4 border-white absolute left-1/2 -bottom-12 -translate-x-1/2"
-              />
-            </div>
-
-            <h2 class="mt-14 font-bold text-lg">Md. Sayedul Marsalin</h2>
-            <p class="text-purple-600 text-sm">Flutter Developer</p>
-            <p class="text-gray-500 text-sm mt-1">
-              <i class="fas fa-location-dot"></i> Bangladesh
-            </p>
-
-            <div class="flex justify-center gap-4 mt-4 text-gray-600">
-              <div class="flex justify-center gap-4 mt-4 text-gray-600">
-                <a
-                  href="https://github.com/sayedulmorsalin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-purple-600 transition"
-                >
-                  <i class="fab fa-github text-xl"></i>
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/sayedul-marsalin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-purple-600 transition"
-                >
-                  <i class="fab fa-linkedin text-xl"></i>
-                </a>
-
-                <a
-                  href="https://www.facebook.com/sayadul.morsalin.94"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-purple-600 transition"
-                >
-                  <i class="fab fa-facebook text-xl"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="flex gap-3 mt-6">
-              <a href="https://drive.google.com/file/d/10bG0k3FR59EvSozkOeuNfkjxGSWLmRnI/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="flex-1 bg-purple-600 text-white py-2 rounded-lg text-center">
-                Resume
-              </a>
-              <a href="#contact" class="flex-1 border py-2 rounded-lg text-center">Contact</a>
-            </div>
-          </div>
-
-          <!-- INTRO -->
-          <div id="about" class="lg:col-span-2">
-            <h1 class="text-3xl font-bold">
-              Hey <span class="text-purple-600">there</span> 👋
-            </h1>
-            <p class="text-gray-600 mt-4 max-w-2xl">
-              Motivated Flutter Developer with experience building
-              cross-platform applications using Flutter, Firebase, and REST
-              APIs.
-            </p>
-
-            <!-- STATS -->
-            <!-- STATS -->
-            <div class="grid md:grid-cols-3 gap-4 mt-8">
-              <div class="bg-white p-5 rounded-xl shadow text-center">
-                <p class="text-2xl font-bold">1.5+</p>
-                <p class="text-sm text-gray-500">Years Experience</p>
-              </div>
-              <div class="bg-white p-5 rounded-xl shadow text-center">
-                <p class="text-2xl font-bold">20+</p>
-                <p class="text-sm text-gray-500">Projects</p>
-              </div>
-              <div class="bg-white p-5 rounded-xl shadow text-center">
-                <p class="text-2xl font-bold">4+</p>
-                <p class="text-sm text-gray-500">Completed Projects</p>
-              </div>
-            </div>
-
-            <!-- QUICK INFO PANEL -->
-            <div class="grid lg:grid-cols-2 gap-6 mt-8">
-              <!-- Left: What I Do -->
-              <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="font-semibold text-purple-600 mb-3">What I Do</h3>
-                <ul class="space-y-2 text-gray-600 text-sm">
-                  <li>• Flutter App Development</li>
-                  <li>• Firebase Backend Integration</li>
-                  <li>• REST API Integration</li>
-                  <li>• UI/UX Implementation</li>
-                  <li>• Performance Optimization</li>
-                </ul>
-              </div>
-
-              <!-- Right: Availability & Stack -->
-              <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="font-semibold text-purple-600 mb-3">
-                  Currently Available
-                </h3>
-
-                <div class="flex items-center gap-2 mb-4">
-                  <span class="w-3 h-3 bg-green-500 rounded-full"></span>
-                  <span class="text-sm text-gray-600"
-                    >Open for Freelance & Remote Work</span
-                  >
-                </div>
-
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
-                    >Flutter</span
-                  >
-                  <span
-                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
-                    >Firebase</span
-                  >
-                  <span
-                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
-                    >REST API</span
-                  >
-                  <span
-                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
-                    >Dart</span
-                  >
-                  <span
-                    class="px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
-                    >Git</span
-                  >
-                </div>
-
-                <a
-                  href="#contact"
-                  class="inline-block mt-4 px-5 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 transition"
-                >
-                  Hire Me
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section id="skills" class="mt-20">
-          <h2 class="text-2xl font-bold text-purple-600 mb-8">My Skills</h2>
-
-          <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <!-- Skill 1 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="26"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmqml.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">Dart</p>
-              <p class="text-sm text-gray-500">90%</p>
-            </div>
-
-            <!-- Skill 2 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="66"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmd1n.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">C++</p>
-              <p class="text-sm text-gray-500">75%</p>
-            </div>
-
-            <!-- Skill 3 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="66"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmI1e.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">Java</p>
-              <p class="text-sm text-gray-500">75%</p>
-            </div>
-
-            <!-- Skill 4 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="105"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmXkv.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">Python</p>
-              <p class="text-sm text-gray-500">60%</p>
-            </div>
-
-            <!-- Skill 5 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="26"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmnXS.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">Flutter</p>
-              <p class="text-sm text-gray-500">90%</p>
-            </div>
-
-            <!-- Skill 6 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="132"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmchB.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">.NET</p>
-              <p class="text-sm text-gray-500">50%</p>
-            </div>
-
-            <!-- Skill 7 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="105"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmEEF.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">Node.js</p>
-              <p class="text-sm text-gray-500">60%</p>
-            </div>
-
-            <!-- Skill 8 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="132"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmhpR.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">React</p>
-              <p class="text-sm text-gray-500">50%</p>
-            </div>
-
-            <!-- Skill 9 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="26"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmCI2.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">Firebase</p>
-              <p class="text-sm text-gray-500">90%</p>
-            </div>
-
-            <!-- Skill 10 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="52"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmAdb.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">MongoDB</p>
-              <p class="text-sm text-gray-500">80%</p>
-            </div>
-
-            <!-- Skill 11 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="80"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmwIp.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">SQLite</p>
-              <p class="text-sm text-gray-500">70%</p>
-            </div>
-
-            <!-- Skill 12 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="52"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXm7mQ.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">MySql</p>
-              <p class="text-sm text-gray-500">80%</p>
-            </div>
-
-            <!-- Skill 13 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="105"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmWYJ.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">adobe premiere pro</p>
-              <p class="text-sm text-gray-500">60%</p>
-            </div>
-
-            <!-- Skill 14 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="132"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmJqX.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">Blender</p>
-              <p class="text-sm text-gray-500">50%</p>
-            </div>
-
-            <!-- Skill 15 -->
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-              <div class="relative w-24 h-24 mx-auto">
-                <svg class="w-full h-full -rotate-90">
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#e5e7eb"
-                    stroke-width="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="48"
-                    cy="48"
-                    r="42"
-                    stroke="#9333ea"
-                    stroke-width="8"
-                    fill="none"
-                    stroke-dasharray="264"
-                    stroke-dashoffset="158"
-                  />
-                </svg>
-                <img
-                  src="https://iili.io/fgXmOQI.png"
-                  class="absolute inset-0 m-auto w-10 h-10 object-contain"
-                />
-              </div>
-              <p class="mt-3 font-semibold">Unity</p>
-              <p class="text-sm text-gray-500">40%</p>
-            </div>
-
-            <!-- Skill 16 -->
-              
-          </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects" class="mt-20">
-          <h2 class="text-2xl font-bold text-purple-600 mb-8">Projects</h2>
-
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
-              <img src="https://iili.io/fgpUWsp.png" alt="Gallery App" class="w-full object-cover">
-              <div class="p-5">
-                <h3 class="font-semibold">DADU (e-commerce app)</h3>
-                <p class="text-sm text-gray-500 mt-2">
-                  This is an e-commerce app built with Flutter and Firebase. It features user authentication, product browsing, cart management, and order processing. It provides a seamless shopping experience with a clean and intuitive UI.
-                </p>
-                <div class="flex gap-2 mt-4">
-                  <a href="https://appnests.vercel.app/" class="flex-1 bg-purple-600 text-white py-2 rounded-lg text-center text-xs hover:bg-purple-700 transition">
-                    <i class="fas fa-download mr-1"></i>Download
-                  </a>
-                  <a href="https://github.com/sayedulmorsalin/DADU" class="flex-1 bg-gray-600 text-white py-2 rounded-lg text-center text-xs hover:bg-gray-700 transition">
-                    <i class="fas fa-code mr-1"></i>Source
-                  </a>
-                  <a href="#" class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-center text-xs hover:bg-blue-700 transition">
-                    <i class="fas fa-book mr-1"></i>Docs
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
-              <img src="https://iili.io/fgpUVXR.png" alt="IoT Controller" class="w-full  object-cover">
-              <div class="p-5">
-                <h3 class="font-semibold"> DADU Admin Panel</h3>
-                <p class="text-sm text-gray-500 mt-2">
-                  An admin panel for managing products, orders, and users in the DADU e-commerce app. Built with Flutter for a consistent UI/UX. Features include product management, order tracking, and user management.
-                </p>
-                <div class="flex gap-2 mt-4">
-                  <a href="#" class="flex-1 bg-purple-600 text-white py-2 rounded-lg text-center text-xs hover:bg-purple-700 transition">
-                    <i class="fas fa-download mr-1"></i>Download
-                  </a>
-                  <a href="https://github.com/sayedulmorsalin/DADU_admin_panel" class="flex-1 bg-gray-600 text-white py-2 rounded-lg text-center text-xs hover:bg-gray-700 transition">
-                    <i class="fas fa-code mr-1"></i>Source
-                  </a>
-                  <a href="#" class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-center text-xs hover:bg-blue-700 transition">
-                    <i class="fas fa-book mr-1"></i>Docs
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
-              <img src="https://iili.io/fgpUhqN.png" alt="Project" class="w-full object-cover">
-              <div class="p-5">
-                <h3 class="font-semibold">Meal Assistant</h3>
-                <p class="text-sm text-gray-500 mt-2">
-                  A Flutter app that helps users to keep track of their meals and nutrition. It includes features like meal logging, calorie counting, and recipe suggestions. Also integrates with Firebase for data storage and user authentication. It calculate properly meal cost and manage weekly meal plan.
-                </p>
-                <div class="flex gap-2 mt-4">
-                  <a href="#" class="flex-1 bg-purple-600 text-white py-2 rounded-lg text-center text-xs hover:bg-purple-700 transition">
-                    <i class="fas fa-download mr-1"></i>Download
-                  </a>
-                  <a href="https://github.com/sayedulmorsalin/Meal_manager" class="flex-1 bg-gray-600 text-white py-2 rounded-lg text-center text-xs hover:bg-gray-700 transition">
-                    <i class="fas fa-code mr-1"></i>Source
-                  </a>
-                  <a href="#" class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-center text-xs hover:bg-blue-700 transition">
-                    <i class="fas fa-book mr-1"></i>Docs
-                  </a>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
-              <img src="https://iili.io/fgpUMzv.png" alt="Portfolio Website" class="w-full  object-cover">
-              <div class="p-5">
-                <h3 class="font-semibold">EasyShare</h3>
-                  <p class="text-sm text-gray-500 mt-2">
-                    A Flutter app for seamless file sharing between devices using Wi-Fi Direct. Features include file browsing, transfer progress tracking, and a user-friendly interface.
-                  </p>
-                <div class="flex gap-2 mt-4">
-                  <a href="#" class="flex-1 bg-purple-600 text-white py-2 rounded-lg text-center text-xs hover:bg-purple-700 transition">
-                    <i class="fas fa-download mr-1"></i>Download
-                  </a>
-                  <a href="https://github.com/sayedulmorsalin/easyshare" class="flex-1 bg-gray-600 text-white py-2 rounded-lg text-center text-xs hover:bg-gray-700 transition">
-                    <i class="fas fa-code mr-1"></i>Source
-                  </a>
-                  <a href="#" class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-center text-xs hover:bg-blue-700 transition">
-                    <i class="fas fa-book mr-1"></i>Docs
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact" class="mt-20 grid md:grid-cols-2 gap-8">
-          <!-- GOOGLE FORM -->
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h2 class="text-xl font-bold text-purple-600 mb-4">Contact Me</h2>
-
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSc1UHs772EWZJLtfUOoXeY6PBfott_95gZqXlqlWcIhvz9TvA/viewform?embedded=true"
-              width="100%"
-              height="520"
-              frameborder="0"
-              marginheight="0"
-              marginwidth="0"
-              class="rounded-lg"
-            >
-              Loading…
-            </iframe>
-          </div>
-
-          <!-- CONTACT INFO + SOCIAL -->
-          <div class="bg-white p-8 rounded-xl shadow">
-            <h3 class="text-lg font-semibold text-purple-600 mb-4">
-              Contact Info
-            </h3>
-
-            <p class="mb-3">
-              <i class="fas fa-envelope text-purple-600 mr-2"></i>
-              sayadulmorsalin123@gmail.com
-            </p>
-
-            <p class="mb-6">
-              <i class="fas fa-phone text-purple-600 mr-2"></i>
-              +8801775876544
-            </p>
-
-            <div class="flex gap-4 text-2xl text-gray-600">
-              <a
-                href="https://github.com/sayedulmorsalin"
-                target="_blank"
-                class="hover:text-purple-600"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/sayedul-marsalin"
-                target="_blank"
-                class="hover:text-purple-600"
-              >
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a
-                href="https://www.facebook.com/sayadul.morsalin.94"
-                target="_blank"
-                class="hover:text-purple-600"
-              >
-                <i class="fab fa-facebook"></i>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <footer class="mt-20 text-center text-gray-500 text-sm">
-          © 2026 Md. Sayedul Marsalin. All rights reserved.
-        </footer>
-      </main>
+  <body class="font-poppins text-gray-800">
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+      <div class="absolute top-0 left-1/4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+      <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s"></div>
+      <div class="absolute top-1/2 left-1/3 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 4s"></div>
     </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar fixed h-screen w-20 bg-primary shadow-lg flex flex-col items-center py-8 space-y-10 z-30">
+      <div class="mb-4">
+        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center hover:scale-110 transition-transform">
+          <span class="text-white font-bold text-lg">SM</span>
+        </div>
+      </div>
+      
+      <a href="#home" class="text-white hover:text-white/90 transition-all duration-300 hover:scale-110 active">
+        <i class="fas fa-house text-xl"></i>
+        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">Home</span>
+      </a>
+      <a href="#about" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
+        <i class="fas fa-user text-xl"></i>
+        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">About</span>
+      </a>
+      <a href="#skills" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
+        <i class="fas fa-code text-xl"></i>
+        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">Skills</span>
+      </a>
+      <a href="#projects" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
+        <i class="fas fa-folder text-xl"></i>
+        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">Projects</span>
+      </a>
+      <a href="#contact" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
+        <i class="fas fa-envelope text-xl"></i>
+        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">Contact</span>
+      </a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="ml-0 md:ml-20 max-w-full p-4 md:p-8">
+      <!-- HERO + PROFILE -->
+      <section id="home" class="grid lg:grid-cols-3 gap-8 items-start mb-20" data-aos="fade-up">
+        <!-- PROFILE CARD -->
+        <div class="glass-card rounded-3xl shadow-xl p-6 text-center relative hover-lift animate-slide-up">
+          <div class="profile-bg h-32 rounded-2xl relative -mt-6 ">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20"></div>
+            <img
+              src="https://avatars.githubusercontent.com/u/164027880?v=4"
+              alt="Profile"
+              class="w-32 h-32 rounded-full border-4 border-white absolute left-1/2 -bottom-16 -translate-x-1/2 shadow-lg"
+            />
+          </div>
+
+          <h2 class="mt-20 font-bold text-xl">Md. Sayedul Marsalin</h2>
+          <p class="gradient-text font-semibold text-lg mb-1">Flutter Developer</p>
+          <p class="text-gray-500 text-sm">
+            <i class="fas fa-location-dot mr-2 text-primary"></i>Dhaka, Bangladesh
+          </p>
+
+          <div class="flex justify-center gap-4 mt-4 text-gray-600">
+            <a
+              href="https://github.com/sayedulmorsalin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-dark hover:text-white transition-all hover:scale-110"
+            >
+              <i class="fab fa-github text-lg"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/sayedul-marsalin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all hover:scale-110"
+            >
+              <i class="fab fa-linkedin text-lg"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/sayadul.morsalin.94"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all hover:scale-110"
+            >
+              <i class="fab fa-facebook text-lg"></i>
+            </a>
+          </div>
+
+          <div class="flex gap-3 mt-8">
+            <a
+              href="https://drive.google.com/file/d/10bG0k3FR59EvSozkOeuNfkjxGSWLmRnI/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl text-center font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <i class="fas fa-download mr-2"></i>Download CV
+            </a>
+          </div>
+        </div>
+
+        <!-- INTRO -->
+        <div id="about" class="lg:col-span-2 space-y-8">
+          <div data-aos="fade-left">
+            <h1 class="text-4xl md:text-5xl font-bold">
+              Hi, I'm <span class="gradient-text">Sayedul</span> 👋
+            </h1>
+            <p class="text-gray-600 mt-4 text-lg max-w-2xl leading-relaxed">
+              Passionate Flutter Developer with 1.5+ years of experience crafting beautiful, high-performance cross-platform applications. 
+              I transform ideas into pixel-perfect reality with clean code and modern design principles.
+            </p>
+          </div>
+
+          <!-- STATS -->
+          <div class="grid sm:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card p-6 rounded-2xl shadow text-center hover-lift">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-calendar-alt text-primary text-xl"></i>
+              </div>
+              <p class="text-3xl font-bold text-dark">1.5+</p>
+              <p class="text-sm text-gray-500">Years Experience</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl shadow text-center hover-lift">
+              <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-code-branch text-secondary text-xl"></i>
+              </div>
+              <p class="text-3xl font-bold text-dark">20+</p>
+              <p class="text-sm text-gray-500">Projects Built</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl shadow text-center hover-lift">
+              <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-check-circle text-accent text-xl"></i>
+              </div>
+              <p class="text-3xl font-bold text-dark">15+</p>
+              <p class="text-sm text-gray-500">Completed Projects</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="mt-24">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h2 class="text-3xl font-bold text-dark mb-3">My <span class="gradient-text">Expertise</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">Technologies and tools I use to bring ideas to life</p>
+        </div>
+        
+        <!-- Programming Languages -->
+        <div class="mb-12" data-aos="fade-up">
+          <h3 class="text-xl font-semibold text-dark mb-6 flex items-center gap-2">
+            <i class="fas fa-laptop-code text-primary"></i> Programming Languages
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+            <!-- Dart -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="23"/>
+                </svg>
+                <img src="https://iili.io/fgXmqml.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <p class="font-semibold text-dark">Dart</p>
+            </div>
+
+            <!-- C++ -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="56"/>
+                </svg>
+                <img src="https://iili.io/fgXmd1n.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">75%</span>
+              </div>
+              <p class="font-semibold text-dark">C++</p>
+            </div>
+
+            <!-- Java -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#f59e0b" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="56"/>
+                </svg>
+                <img src="https://iili.io/fgXmI1e.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">75%</span>
+              </div>
+              <p class="font-semibold text-dark">Java</p>
+            </div>
+
+            <!-- Python -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="90"/>
+                </svg>
+                <img src="https://iili.io/fgXmXkv.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">60%</span>
+              </div>
+              <p class="font-semibold text-dark">Python</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frameworks & Libraries -->
+        <div class="mb-12" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-semibold text-dark mb-6 flex items-center gap-2">
+            <i class="fas fa-cogs text-primary"></i> Frameworks & Libraries
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+            <!-- Flutter -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="23"/>
+                </svg>
+                <img src="https://iili.io/fgXmnXS.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <p class="font-semibold text-dark">Flutter</p>
+            </div>
+
+            <!-- Node.js -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="90"/>
+                </svg>
+                <img src="https://iili.io/fgXmEEF.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">60%</span>
+              </div>
+              <p class="font-semibold text-dark">Node.js</p>
+            </div>
+
+            <!-- .NET -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#f59e0b" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="113"/>
+                </svg>
+                <img src="https://iili.io/fgXmchB.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">50%</span>
+              </div>
+              <p class="font-semibold text-dark">.NET</p>
+            </div>
+
+            <!-- React -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="113"/>
+                </svg>
+                <img src="https://iili.io/fgXmhpR.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">50%</span>
+              </div>
+              <p class="font-semibold text-dark">React</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Databases & Backend -->
+        <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-semibold text-dark mb-6 flex items-center gap-2">
+            <i class="fas fa-database text-primary"></i> Databases & Backend
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+            <!-- Firebase -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="23"/>
+                </svg>
+                <img src="https://iili.io/fgXmCI2.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <p class="font-semibold text-dark">Firebase</p>
+            </div>
+
+            <!-- MongoDB -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="45"/>
+                </svg>
+                <img src="https://iili.io/fgXmAdb.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">80%</span>
+              </div>
+              <p class="font-semibold text-dark">MongoDB</p>
+            </div>
+
+            <!-- SQLite -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#f59e0b" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="68"/>
+                </svg>
+                <img src="https://iili.io/fgXmwIp.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">70%</span>
+              </div>
+              <p class="font-semibold text-dark">SQLite</p>
+            </div>
+
+            <!-- MySQL -->
+            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
+              <div class="relative w-20 h-20 mx-auto mb-3">
+                <svg class="w-full h-full">
+                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+                  <circle cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="45"/>
+                </svg>
+                <img src="https://iili.io/fgXm7mQ.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
+                <span class="skill-percentage">80%</span>
+              </div>
+              <p class="font-semibold text-dark">MySQL</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="mt-24">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h2 class="text-3xl font-bold text-dark mb-3">Featured <span class="gradient-text">Projects</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">A showcase of my recent work and contributions</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 lg:grid-cols-3 gap-8">
+          <!-- DADU E-commerce -->
+          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left">
+            <div class=" overflow-hidden relative">
+              <img src="https://iili.io/fgpUWsp.png" alt="DADU App" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
+              <span class="type-badge px-3 py-1 bg-primary text-white text-xs rounded-full font-medium">Mobile App</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-bold text-lg text-dark">DADU E-commerce</h3>
+                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-primary transition"></i>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">
+                Built full-stack e-commerce platform with authentication, cart, orders, and admin dashboard .Implemented fuzzysearch improving productdiscovery accuracy by50%. Reduced image loadtime by 35% using CloudinaryCDN and media optimization
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Flutter</span>
+                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Firebase</span>
+                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Stripe API</span>
+                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">GetX</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="https://appnests.vercel.app/" target="_blank" class="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-2.5 rounded-lg text-center text-sm hover:shadow-lg transition">
+                  <i class="fas fa-download mr-2"></i>Download
+                </a>
+                <a href="https://github.com/sayedulmorsalin/DADU" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
+                  <i class="fab fa-github mr-2"></i>Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- DADU Admin Panel -->
+          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="100">
+            <div class=" overflow-hidden relative">
+              <img src="https://iili.io/fgpUVXR.png" alt="Admin Panel" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
+              <span class="type-badge px-3 py-1 bg-secondary text-white text-xs rounded-full font-medium">Admin Panel</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-bold text-lg text-dark">DADU Admin Panel</h3>
+                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-secondary transition"></i>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">
+                Comprehensive admin dashboard for managing products, orders, users, and analytics for the DADU e-commerce platform.
+              </p>
+              <br>
+              <br>
+              <br>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Flutter</span>
+                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Firebase</span>
+                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Cloud Functions</span>
+                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Charts</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="https://github.com/sayedulmorsalin/DADU_admin_panel" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
+                  <i class="fab fa-github mr-2"></i>Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meal Assistant -->
+          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="200">
+            <div class=" overflow-hidden relative">
+              <img src="https://iili.io/fgpUhqN.png" alt="Meal Assistant" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
+              <span class="type-badge px-3 py-1 bg-accent text-white text-xs rounded-full font-medium">Calcute Meal</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-bold text-lg text-dark">Meal Assistant</h3>
+                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-accent transition"></i>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">
+                Smart meal tracking app with calorie counting, weekly meal plans, grocery lists, and nutrition insights.
+              </p>
+              <br>
+              <br>
+              <br>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Flutter</span>
+                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Firebase</span>
+                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Nutrition API</span>
+                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Local Storage</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="https://github.com/sayedulmorsalin/Meal_manager" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
+                  <i class="fab fa-github mr-2"></i>Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- EasyShare -->
+          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="300">
+            <div class=" overflow-hidden relative">
+              <img src="https://iili.io/fgpUMzv.png" alt="EasyShare" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
+              <span class="type-badge px-3 py-1 bg-primary text-white text-xs rounded-full font-medium">Utility App</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-bold text-lg text-dark">EasyShare</h3>
+                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-primary transition"></i>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">
+                High-speed Wi-Fi Direct file sharing application with cross-platform support, encryption, and batch transfers.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Flutter</span>
+                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Wi-Fi Direct</span>
+                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Encryption</span>
+                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Platform Channels</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="https://github.com/sayedulmorsalin/easyshare" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
+                  <i class="fab fa-github mr-2"></i>Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Talksy -->
+          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="400">
+            <div class=" overflow-hidden relative">
+              <img src="https://iili.io/f6b2HGt.png" alt="Talksy" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
+              <span class="type-badge px-3 py-1 bg-secondary text-white text-xs rounded-full font-medium">Chat App</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-bold text-lg text-dark">Talksy</h3>
+                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-secondary transition"></i>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">
+                Real-time chat application with voice messages, group chats, and end-to-end encryption.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Flutter</span>
+                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Firebase</span>
+                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Firebase_auth</span>
+                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Cloud_messaging</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="https://github.com/sayedulmorsalin/Talksy" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
+                  <i class="fab fa-github mr-2"></i>Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moderator-manager  -->
+          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="500">
+            <div class=" overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Weather App" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
+              <span class="type-badge px-3 py-1 bg-accent text-white text-xs rounded-full font-medium">Finance App</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-bold text-lg text-dark">Moderator-manager</h3>
+                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-accent transition"></i>
+              </div>
+              <p class="text-gray-600 text-sm mb-4">
+                A comprehensive moderation and management system for online communities.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Flutter</span>
+                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">OpenWeather API</span>
+                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Geolocation</span>
+                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Animations</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="https://github.com/sayedulmorsalin/weather_app" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
+                  <i class="fab fa-github mr-2"></i>Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="mt-24 grid md:grid-cols-2 gap-8">
+        <div class="glass-card p-6 rounded-2xl shadow hover-lift" data-aos="fade-right">
+          <h2 class="text-2xl font-bold text-dark mb-6">Get In <span class="gradient-text">Touch</span></h2>
+            <form
+              action="https://formspree.io/f/mojdandn"
+              method="POST"
+              class="space-y-4"
+            >
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+                class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary outline-none"
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+                class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary outline-none"
+              />
+
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary outline-none"
+              />
+
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Your Message"
+                required
+                class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary outline-none"
+              ></textarea>
+
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-lg font-medium hover:shadow-lg transition"
+              >
+                Send Message
+              </button>
+            </form>
+
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl shadow hover-lift" data-aos="fade-left">
+          <h3 class="text-xl font-bold text-dark mb-6">Contact Information</h3>
+          
+          <div class="space-y-6">
+            <div class="flex items-center gap-4 p-4 bg-primary/5 rounded-xl hover:bg-primary/10 transition">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                <i class="fas fa-envelope text-primary text-xl"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Email</p>
+                <p class="font-medium">sayadulmorsalin123@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-4 bg-secondary/5 rounded-xl hover:bg-secondary/10 transition">
+              <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center">
+                <i class="fas fa-phone text-secondary text-xl"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Phone</p>
+                <p class="font-medium">+880 1775 876544</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-4 bg-accent/5 rounded-xl hover:bg-accent/10 transition">
+              <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center">
+                <i class="fas fa-map-marker-alt text-accent text-xl"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Location</p>
+                <p class="font-medium">Dhaka, Bangladesh</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <h4 class="font-semibold text-dark mb-4">Connect with me</h4>
+            <div class="flex gap-4">
+              <a href="https://github.com/sayedulmorsalin" target="_blank" 
+                 class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-dark hover:text-white transition-all hover:scale-110">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/sayedul-marsalin" target="_blank" 
+                 class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all hover:scale-110">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="https://www.facebook.com/sayadul.morsalin.94" target="_blank" 
+                 class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all hover:scale-110">
+                <i class="fab fa-facebook text-xl"></i>
+              </a>
+              <a href="https://twitter.com/sayedulmorsalin" target="_blank" 
+                 class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-blue-400 hover:text-white transition-all hover:scale-110">
+                <i class="fab fa-twitter text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-8 border-t border-gray-200">
+            <h4 class="font-semibold text-dark mb-4">Working Hours</h4>
+            <p class="text-gray-600 text-sm">Mon - Fri: 9:00 AM - 6:00 PM (UTC+6)</p>
+            <p class="text-gray-600 text-sm">Response Time: Within 24 hours</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="mt-24 pb-8 text-center">
+        <div class="glass-card p-8 rounded-2xl shadow">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center animate-bounce-slow">
+            <span class="text-white font-bold text-xl">SM</span>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-2">Let's Build Something Amazing</h3>
+          <p class="text-gray-600 mb-6 max-w-md mx-auto">
+            Have a project in mind? I'd love to hear about it and help bring your ideas to life.
+          </p>
+          <a href="mailto:sayadulmorsalin123@gmail.com" 
+             class="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+            <i class="fas fa-paper-plane"></i> Start a Conversation
+          </a>
+          <div class="mt-8 pt-8 border-t border-gray-200">
+            <p class="text-gray-500 text-sm">© 2024 Md. Sayedul Marsalin. All rights reserved.</p>
+            <p class="text-gray-500 text-sm mt-1">Built with ❤️ using HTML, Tailwind CSS & JavaScript</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const data = new FormData(form);
+
+        await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" }
+        });
+
+        alert("Message sent successfully!");
+        form.reset();
+      });
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+
+      // Smooth scrolling for navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Update active navigation
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar a');
+        
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Add hover effects for project cards
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-10px)';
+        });
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    </script>
   </body>
 </html>
