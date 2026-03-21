@@ -14,9 +14,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
 
-    <!-- Google Font -->
+    <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -29,7 +29,8 @@
         theme: {
           extend: {
             fontFamily: {
-              poppins: ["Poppins", "sans-serif"],
+              poppins: ["Manrope", "sans-serif"],
+              display: ["Space Grotesk", "sans-serif"],
             },
             colors: {
               primary: "#7c3aed",
@@ -72,22 +73,28 @@
         scroll-behavior: smooth;
       }
       body {
-        background: linear-gradient(135deg, #a798eb 0%, #76a9dd 100%);
+        background:
+          radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 30%),
+          radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.18), transparent 26%),
+          linear-gradient(180deg, #eff6ff 0%, #e0f2fe 40%, #f8fafc 100%);
+        color: #1f2937;
       }
       .gradient-text {
-        background: linear-gradient(135deg, #7c3aed 0%, #10b981 100%);
+        background: linear-gradient(135deg, #5b21b6 0%, #0f766e 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
       .glass-card {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 25px 60px rgba(15, 23, 42, 0.08);
       }
       .sidebar {
-        background: linear-gradient(180deg, rgba(124, 58, 237, 0.95) 0%, rgba(124, 58, 237, 0.85) 100%);
-        backdrop-filter: blur(10px);
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(91, 33, 182, 0.86) 100%);
+        backdrop-filter: blur(16px);
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
       }
       .sidebar a {
         position: relative;
@@ -110,15 +117,17 @@
         opacity: 1;
       }
       .profile-bg {
-        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-        overflow: visible;   
+        background:
+          radial-gradient(circle at top right, rgba(255, 255, 255, 0.22), transparent 24%),
+          linear-gradient(135deg, #4c1d95 0%, #0f766e 100%);
+        overflow: visible;
       }
       .hover-lift {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .hover-lift:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 28px 60px rgba(76, 29, 149, 0.12);
       }
       .skill-circle {
         position: relative;
@@ -128,35 +137,70 @@
       .skill-circle svg {
         transform: rotate(-90deg);
       }
-
-      @media (max-width: 768px) {
-        .sidebar {
-          background: linear-gradient(90deg, rgba(124, 58, 237, 0.95) 0%, rgba(124, 58, 237, 0.85) 100%);
-          position: fixed;
-          bottom: 0;
-          top: auto;
-          height: 70px;
-          width: 100%;
-          flex-direction: row;
-          justify-content: space-around;
-          padding: 0.5rem 0;
-          z-index: 50;
-          border-top-left-radius: 20px;
-          border-top-right-radius: 20px;
-          box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-        }
-        .sidebar a::after {
-          bottom: auto;
-          top: -10px;
-        }
-        main {
-          margin-bottom: 70px !important;
-          padding-top: 1.5rem;
-        }
+      .hero-panel {
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(16, 185, 129, 0.08)),
+          radial-gradient(circle at top right, rgba(255, 255, 255, 0.75), transparent 30%);
+        pointer-events: none;
+      }
+      .section-shell {
+        position: relative;
+        padding: 2rem;
+        border-radius: 2rem;
+      }
+      .section-shell::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        pointer-events: none;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 0.95rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        color: #4c1d95;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+      }
+      .hero-stat {
+        background: rgba(255, 255, 255, 0.64);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+      }
+      .spotlight-chip {
+        background: rgba(15, 23, 42, 0.78);
+        color: #fff;
+      }
+      .skill-percentage {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #1f2937;
       }
       .project-card {
         position: relative;
         overflow: hidden;
+      }
+      .project-card img {
+        height: 220px;
       }
       .project-card::before {
         content: '';
@@ -173,16 +217,57 @@
       .project-card:hover::before {
         transform: scaleX(1);
       }
+      .project-copy {
+        min-height: 96px;
+      }
       .type-badge {
         position: absolute;
         top: 12px;
         right: 12px;
         z-index: 10;
       }
+      .contact-panel {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.66)),
+          linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(16, 185, 129, 0.08));
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 0%, rgba(91, 33, 182, 0.88) 100%);
+          position: fixed;
+          bottom: 0;
+          top: auto;
+          height: 70px;
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-around;
+          padding: 0.5rem 0;
+          z-index: 50;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .section-shell {
+          padding: 1.25rem;
+          border-radius: 1.5rem;
+        }
+        .sidebar a::after {
+          bottom: auto;
+          top: -10px;
+        }
+        main {
+          margin-bottom: 70px !important;
+          padding-top: 1.5rem;
+        }
+        .project-copy {
+          min-height: 0;
+        }
+      }
     </style>
   </head>
 
-  <body class="font-poppins text-gray-800">
+  <body class="font-poppins text-gray-800 selection:bg-primary/20">
     <!-- Animated Background Elements -->
     <div class="fixed inset-0 -z-10 overflow-hidden">
       <div class="absolute top-0 left-1/4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
@@ -221,11 +306,11 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="ml-0 md:ml-20 max-w-full p-4 md:p-8">
+    <main class="ml-0 md:ml-20 max-w-7xl p-4 md:p-8">
       <!-- HERO + PROFILE -->
       <section id="home" class="grid lg:grid-cols-3 gap-8 items-start mb-20" data-aos="fade-up">
         <!-- PROFILE CARD -->
-        <div class="glass-card rounded-3xl shadow-xl p-6 text-center relative hover-lift animate-slide-up">
+        <div class="glass-card section-shell text-center relative hover-lift animate-slide-up">
           <div class="profile-bg h-32 rounded-2xl relative -mt-6 ">
             <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20"></div>
             <img
@@ -282,33 +367,56 @@
 
         <!-- INTRO -->
         <div id="about" class="lg:col-span-2 space-y-8">
-          <div data-aos="fade-left">
-            <h1 class="text-4xl md:text-5xl font-bold">
-              Hi, I'm <span class="gradient-text">Sayedul</span> 👋
-            </h1>
-            <p class="text-gray-600 mt-4 text-lg max-w-2xl leading-relaxed">
-              Passionate Flutter Developer with 1.5+ years of experience crafting beautiful, high-performance cross-platform applications. 
-              I transform ideas into pixel-perfect reality with clean code and modern design principles.
-            </p>
+          <div class="glass-card hero-panel section-shell" data-aos="fade-left">
+            <div class="relative z-10">
+              <span class="eyebrow mb-5">
+                <i class="fas fa-sparkles"></i>
+                Flutter Portfolio
+              </span>
+              <h1 class="font-display text-4xl md:text-6xl font-bold leading-tight text-slate-900">
+                Building sleek apps with
+                <span class="gradient-text">speed, polish, and care.</span>
+              </h1>
+              <p class="text-gray-600 mt-5 text-lg max-w-2xl leading-relaxed">
+                Passionate Flutter Developer with 1.5+ years of experience crafting beautiful, high-performance cross-platform applications.
+                I transform ideas into pixel-perfect reality with clean code and modern design principles.
+              </p>
+              <div class="mt-8 flex flex-wrap gap-3">
+                <a href="#projects" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-white font-semibold hover:bg-slate-800 transition-all">
+                  <i class="fas fa-arrow-right"></i>View Projects
+                </a>
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-xl bg-white/80 px-6 py-3 text-slate-800 font-semibold border border-white/60 hover:bg-white transition-all">
+                  <i class="fas fa-paper-plane"></i>Hire Me
+                </a>
+              </div>
+              <div class="mt-8 flex flex-wrap gap-3">
+                <div class="spotlight-chip rounded-2xl px-4 py-3 text-sm font-medium">
+                  <span class="text-emerald-300">Available</span> for freelance and remote roles
+                </div>
+                <div class="rounded-2xl bg-white/70 px-4 py-3 text-sm font-medium text-slate-700 border border-white/60">
+                  Focused on Flutter, Firebase, and performant UI
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- STATS -->
           <div class="grid sm:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="glass-card p-6 rounded-2xl shadow text-center hover-lift">
+            <div class="glass-card hero-stat p-6 rounded-2xl text-center hover-lift">
               <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                 <i class="fas fa-calendar-alt text-primary text-xl"></i>
               </div>
               <p class="text-3xl font-bold text-dark">1.5+</p>
               <p class="text-sm text-gray-500">Years Experience</p>
             </div>
-            <div class="glass-card p-6 rounded-2xl shadow text-center hover-lift">
+            <div class="glass-card hero-stat p-6 rounded-2xl text-center hover-lift">
               <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                 <i class="fas fa-code-branch text-secondary text-xl"></i>
               </div>
               <p class="text-3xl font-bold text-dark">20+</p>
               <p class="text-sm text-gray-500">Projects Built</p>
             </div>
-            <div class="glass-card p-6 rounded-2xl shadow text-center hover-lift">
+            <div class="glass-card hero-stat p-6 rounded-2xl text-center hover-lift">
               <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                 <i class="fas fa-check-circle text-accent text-xl"></i>
               </div>
@@ -320,9 +428,10 @@
       </section>
 
       <!-- SKILLS -->
-      <section id="skills" class="mt-24">
+      <section id="skills" class="mt-24 glass-card section-shell">
         <div class="text-center mb-12" data-aos="fade-up">
-          <h2 class="text-3xl font-bold text-dark mb-3">My <span class="gradient-text">Expertise</span></h2>
+          <span class="eyebrow mb-4"><i class="fas fa-code"></i> Skills</span>
+          <h2 class="font-display text-3xl font-bold text-dark mb-3">My <span class="gradient-text">Expertise</span></h2>
           <p class="text-gray-600 max-w-2xl mx-auto">Technologies and tools I use to bring ideas to life</p>
         </div>
         
@@ -508,9 +617,10 @@
       </section>
 
       <!-- PROJECTS -->
-      <section id="projects" class="mt-24">
+      <section id="projects" class="mt-24 glass-card section-shell">
         <div class="text-center mb-12" data-aos="fade-up">
-          <h2 class="text-3xl font-bold text-dark mb-3">Featured <span class="gradient-text">Projects</span></h2>
+          <span class="eyebrow mb-4"><i class="fas fa-briefcase"></i> Portfolio</span>
+          <h2 class="font-display text-3xl font-bold text-dark mb-3">Featured <span class="gradient-text">Projects</span></h2>
           <p class="text-gray-600 max-w-2xl mx-auto">A showcase of my recent work and contributions</p>
         </div>
 
@@ -526,7 +636,7 @@
                 <h3 class="font-bold text-lg text-dark">DADU E-commerce</h3>
                 <i class="fas fa-external-link-alt text-gray-400 group-hover:text-primary transition"></i>
               </div>
-              <p class="text-gray-600 text-sm mb-4">
+              <p class="project-copy text-gray-600 text-sm mb-4">
                 Built full-stack e-commerce platform with authentication, cart, orders, and admin dashboard .Implemented fuzzysearch improving productdiscovery accuracy by50%. Reduced image loadtime by 35% using CloudinaryCDN and media optimization
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
@@ -557,12 +667,9 @@
                 <h3 class="font-bold text-lg text-dark">DADU Admin Panel</h3>
                 <i class="fas fa-external-link-alt text-gray-400 group-hover:text-secondary transition"></i>
               </div>
-              <p class="text-gray-600 text-sm mb-4">
+              <p class="project-copy text-gray-600 text-sm mb-4">
                 Comprehensive admin dashboard for managing products, orders, users, and analytics for the DADU e-commerce platform.
               </p>
-              <br>
-              <br>
-              <br>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Flutter</span>
                 <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Firebase</span>
@@ -588,12 +695,9 @@
                 <h3 class="font-bold text-lg text-dark">Meal Assistant</h3>
                 <i class="fas fa-external-link-alt text-gray-400 group-hover:text-accent transition"></i>
               </div>
-              <p class="text-gray-600 text-sm mb-4">
+              <p class="project-copy text-gray-600 text-sm mb-4">
                 Smart meal tracking app with calorie counting, weekly meal plans, grocery lists, and nutrition insights.
               </p>
-              <br>
-              <br>
-              <br>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Flutter</span>
                 <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Firebase</span>
@@ -619,7 +723,7 @@
                 <h3 class="font-bold text-lg text-dark">EasyShare</h3>
                 <i class="fas fa-external-link-alt text-gray-400 group-hover:text-primary transition"></i>
               </div>
-              <p class="text-gray-600 text-sm mb-4">
+              <p class="project-copy text-gray-600 text-sm mb-4">
                 High-speed Wi-Fi Direct file sharing application with cross-platform support, encryption, and batch transfers.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
@@ -647,7 +751,7 @@
                 <h3 class="font-bold text-lg text-dark">Talksy</h3>
                 <i class="fas fa-external-link-alt text-gray-400 group-hover:text-secondary transition"></i>
               </div>
-              <p class="text-gray-600 text-sm mb-4">
+              <p class="project-copy text-gray-600 text-sm mb-4">
                 Real-time chat application with voice messages, group chats, and end-to-end encryption.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
@@ -675,7 +779,7 @@
                 <h3 class="font-bold text-lg text-dark">Moderator manager</h3>
                 <i class="fas fa-external-link-alt text-gray-400 group-hover:text-accent transition"></i>
               </div>
-              <p class="text-gray-600 text-sm mb-4">
+              <p class="project-copy text-gray-600 text-sm mb-4">
                 A comprehensive moderation and management system for online communities.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
@@ -695,8 +799,15 @@
       </section>
 
       <!-- CONTACT -->
-      <section id="contact" class="mt-24 grid md:grid-cols-2 gap-8">
-        <div class="glass-card p-6 rounded-2xl shadow hover-lift" data-aos="fade-right">
+      <section id="contact" class="mt-24">
+        <div class="glass-card section-shell">
+          <div class="mb-10 text-center" data-aos="fade-up">
+            <span class="eyebrow mb-4"><i class="fas fa-envelope-open-text"></i> Contact</span>
+            <h2 class="font-display text-3xl font-bold text-dark mb-3">Let's create something <span class="gradient-text">valuable</span></h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Whether you need a polished mobile experience, a production-ready admin panel, or a reliable Flutter developer, I’m open to the conversation.</p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8">
+        <div class="glass-card contact-panel p-6 rounded-2xl hover-lift" data-aos="fade-right">
           <h2 class="text-2xl font-bold text-dark mb-6">Get In <span class="gradient-text">Touch</span></h2>
             <form
               action="https://formspree.io/f/mojdandn"
@@ -744,7 +855,7 @@
 
         </div>
 
-        <div class="glass-card p-8 rounded-2xl shadow hover-lift" data-aos="fade-left">
+        <div class="glass-card contact-panel p-8 rounded-2xl hover-lift" data-aos="fade-left">
           <h3 class="text-xl font-bold text-dark mb-6">Contact Information</h3>
           
           <div class="space-y-6">
@@ -807,15 +918,17 @@
             <p class="text-gray-600 text-sm">Response Time: Within 24 hours</p>
           </div>
         </div>
+          </div>
+        </div>
       </section>
 
       <!-- FOOTER -->
       <footer class="mt-24 pb-8 text-center">
-        <div class="glass-card p-8 rounded-2xl shadow">
+        <div class="glass-card section-shell p-8">
           <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center animate-bounce-slow">
             <span class="text-white font-bold text-xl">SM</span>
           </div>
-          <h3 class="text-xl font-bold text-dark mb-2">Let's Build Something Amazing</h3>
+          <h3 class="font-display text-2xl font-bold text-dark mb-2">Let's Build Something Amazing</h3>
           <p class="text-gray-600 mb-6 max-w-md mx-auto">
             Have a project in mind? I'd love to hear about it and help bring your ideas to life.
           </p>
