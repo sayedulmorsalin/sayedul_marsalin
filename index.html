@@ -243,22 +243,24 @@
         scroll-margin-top: 1.5rem;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) {
         .sidebar {
           background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 0%, rgba(91, 33, 182, 0.88) 100%);
-          position: fixed;
-          left: 0.75rem;
-          right: 0.75rem;
-          bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
-          top: auto;
-          height: auto;
-          width: auto;
-          flex-direction: row;
-          justify-content: space-between;
-          gap: 0.25rem;
-          padding: 0.7rem 0.9rem;
+          position: fixed !important;
+          left: 0.75rem !important;
+          right: 0.75rem !important;
+          bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem) !important;
+          top: auto !important;
+          height: auto !important;
+          width: auto !important;
+          display: flex !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          gap: 0.25rem !important;
+          padding: 0.7rem 0.9rem !important;
           z-index: 50;
-          border-radius: 999px;
+          border-radius: 999px !important;
           box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
@@ -268,19 +270,22 @@
           display: none;
         }
         .sidebar > div {
-          display: none;
+          display: none !important;
         }
         .sidebar a {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 3rem;
-          height: 3rem;
-          flex: 0 0 auto;
-          border-radius: 999px;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 3rem !important;
+          height: 3rem !important;
+          flex: 0 0 auto !important;
+          border-radius: 999px !important;
         }
         .sidebar a.active {
           background: rgba(255, 255, 255, 0.16);
+        }
+        .sidebar.space-y-10 {
+          row-gap: 0 !important;
         }
         .section-shell {
           padding: 1.25rem;
@@ -322,28 +327,28 @@
       
       <a href="#home" class="text-white hover:text-white/90 transition-all duration-300 hover:scale-110 active">
         <i class="fas fa-house text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">Home</span>
+        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Home</span>
       </a>
       <a href="#about" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
         <i class="fas fa-user text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">About</span>
+        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">About</span>
       </a>
       <a href="#skills" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
         <i class="fas fa-code text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">Skills</span>
+        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Skills</span>
       </a>
       <a href="#projects" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
         <i class="fas fa-folder text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">Projects</span>
+        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Projects</span>
       </a>
       <a href="#contact" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
         <i class="fas fa-envelope text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden md:block">Contact</span>
+        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Contact</span>
       </a>
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="ml-0 md:ml-20 max-w-7xl p-4 md:p-8">
+    <main class="ml-0 lg:ml-20 max-w-7xl p-4 md:p-8">
       <!-- HERO + PROFILE -->
       <section id="home" class="grid lg:grid-cols-3 gap-8 items-start mb-20" data-aos="fade-up">
         <!-- PROFILE CARD -->
@@ -410,7 +415,7 @@
                 <i class="fas fa-sparkles"></i>
                 Flutter Portfolio
               </span>
-              <h1 class="font-display text-4xl md:text-6xl font-bold leading-tight text-slate-900">
+              <h1 class="font-display text-4xl sm:text-5xl xl:text-6xl font-bold leading-tight text-slate-900">
                 Building sleek apps with
                 <span class="gradient-text">speed, polish, and care.</span>
               </h1>
