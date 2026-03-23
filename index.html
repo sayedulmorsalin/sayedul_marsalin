@@ -157,6 +157,45 @@
           linear-gradient(135deg, #4c1d95 0%, #0f766e 100%);
         overflow: visible;
       }
+      .profile-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .profile-card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .profile-highlights {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      .profile-highlight {
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        padding: 0.9rem 0.85rem;
+        text-align: left;
+      }
+      .profile-highlight i {
+        color: #5b21b6;
+        margin-bottom: 0.45rem;
+      }
+      .profile-highlight strong {
+        display: block;
+        color: #0f172a;
+        font-size: 0.95rem;
+      }
+      .profile-highlight span {
+        display: block;
+        margin-top: 0.2rem;
+        color: #64748b;
+        font-size: 0.78rem;
+        line-height: 1.4;
+      }
       .hover-lift {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
@@ -391,6 +430,11 @@
         .hero-panel .rounded-2xl {
           width: 100%;
         }
+        .profile-highlights {
+          grid-template-columns: 1fr;
+          gap: 0.65rem;
+          margin-top: 1rem;
+        }
         .hero-panel a {
           width: 100%;
           justify-content: center;
@@ -466,7 +510,7 @@
       <!-- HERO + PROFILE -->
       <section id="home" class="grid lg:grid-cols-3 gap-8 items-start mb-20" data-aos="fade-up">
         <!-- PROFILE CARD -->
-        <div class="glass-card section-shell text-center relative hover-lift animate-slide-up">
+        <div class="glass-card profile-card section-shell text-center relative hover-lift animate-slide-up">
           <div class="profile-bg h-32 rounded-2xl relative -mt-6 ">
             <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20"></div>
             <img
@@ -476,48 +520,63 @@
             />
           </div>
 
-          <h2 class="mt-20 font-bold text-xl">Md. Sayedul Marsalin</h2>
-          <p class="gradient-text font-semibold text-lg mb-1">Flutter Developer</p>
-          <p class="text-gray-500 text-sm">
-            <i class="fas fa-location-dot mr-2 text-primary"></i>Dhaka, Bangladesh
-          </p>
+          <div class="profile-card-body">
+            <h2 class="mt-20 font-bold text-xl">Md. Sayedul Marsalin</h2>
+            <p class="gradient-text font-semibold text-lg mb-1">Flutter Developer</p>
+            <p class="text-gray-500 text-sm">
+              <i class="fas fa-location-dot mr-2 text-primary"></i>Dhaka, Bangladesh
+            </p>
 
-          <div class="flex justify-center gap-4 mt-4 text-gray-600">
-            <a
-              href="https://github.com/sayedulmorsalin"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-dark hover:text-white transition-all hover:scale-110"
-            >
-              <i class="fab fa-github text-lg"></i>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/sayedul-marsalin"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all hover:scale-110"
-            >
-              <i class="fab fa-linkedin text-lg"></i>
-            </a>
-            <a
-              href="https://www.facebook.com/sayadul.morsalin.94"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all hover:scale-110"
-            >
-              <i class="fab fa-facebook text-lg"></i>
-            </a>
-          </div>
+            <div class="flex justify-center gap-4 mt-4 text-gray-600">
+              <a
+                href="https://github.com/sayedulmorsalin"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-dark hover:text-white transition-all hover:scale-110"
+              >
+                <i class="fab fa-github text-lg"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/sayedul-marsalin"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all hover:scale-110"
+              >
+                <i class="fab fa-linkedin text-lg"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/sayadul.morsalin.94"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all hover:scale-110"
+              >
+                <i class="fab fa-facebook text-lg"></i>
+              </a>
+            </div>
 
-          <div class="flex gap-3 mt-8">
-            <a
-              href="https://drive.google.com/drive/folders/12RRl8A1XY2qpZ-QDFxhDTFfJ85bovn-4?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl text-center font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <i class="fas fa-download mr-2"></i>Download CV
-            </a>
+            <div class="profile-highlights">
+              <div class="profile-highlight">
+                <i class="fas fa-mobile-screen-button"></i>
+                <strong>Cross-platform apps</strong>
+                <span>Android, iOS, web, and clean responsive UI.</span>
+              </div>
+              <div class="profile-highlight">
+                <i class="fas fa-bolt"></i>
+                <strong>Fast delivery</strong>
+                <span>Performance-focused builds with polished UX.</span>
+              </div>
+            </div>
+
+            <div class="flex gap-3 mt-auto pt-6">
+              <a
+                href="https://drive.google.com/drive/folders/12RRl8A1XY2qpZ-QDFxhDTFfJ85bovn-4?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl text-center font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <i class="fas fa-download mr-2"></i>Download CV
+              </a>
+            </div>
           </div>
         </div>
 
