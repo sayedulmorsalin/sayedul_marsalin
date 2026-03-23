@@ -113,6 +113,18 @@
         backdrop-filter: blur(16px);
         border-right: 1px solid rgba(255, 255, 255, 0.08);
         width: var(--sidebar-width);
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      .sidebar-nav {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 1rem;
+        min-height: 0;
       }
       .sidebar a {
         position: relative;
@@ -287,8 +299,15 @@
           backdrop-filter: blur(18px);
           transform: none !important;
         }
-        .sidebar > div {
+        .sidebar-brand {
           display: none !important;
+        }
+        .sidebar-nav {
+          flex: 1 1 0 !important;
+          width: 100% !important;
+          flex-direction: row !important;
+          justify-content: space-around !important;
+          gap: 0 !important;
         }
         .sidebar a {
           display: inline-flex !important;
@@ -411,33 +430,35 @@
     </div>
 
     <!-- SIDEBAR -->
-    <aside class="sidebar fixed h-screen w-20 bg-primary shadow-lg flex flex-col items-center py-8 space-y-10 z-30">
-      <div class="mb-4">
+    <aside class="sidebar fixed h-screen w-20 bg-primary shadow-lg flex flex-col items-center py-6 z-30">
+      <div class="sidebar-brand mb-4">
         <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center hover:scale-110 transition-transform">
           <span class="text-white font-bold text-lg">SM</span>
         </div>
       </div>
-      
-      <a href="#home" class="text-white hover:text-white/90 transition-all duration-300 hover:scale-110 active">
-        <i class="fas fa-house text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Home</span>
-      </a>
-      <a href="#about" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
-        <i class="fas fa-user text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">About</span>
-      </a>
-      <a href="#skills" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
-        <i class="fas fa-code text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Skills</span>
-      </a>
-      <a href="#projects" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
-        <i class="fas fa-folder text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Projects</span>
-      </a>
-      <a href="#contact" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
-        <i class="fas fa-envelope text-xl"></i>
-        <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Contact</span>
-      </a>
+
+      <div class="sidebar-nav">
+        <a href="#home" class="text-white hover:text-white/90 transition-all duration-300 hover:scale-110 active">
+          <i class="fas fa-house text-xl"></i>
+          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Home</span>
+        </a>
+        <a href="#about" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
+          <i class="fas fa-user text-xl"></i>
+          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">About</span>
+        </a>
+        <a href="#skills" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
+          <i class="fas fa-code text-xl"></i>
+          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Skills</span>
+        </a>
+        <a href="#projects" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
+          <i class="fas fa-folder text-xl"></i>
+          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Projects</span>
+        </a>
+        <a href="#contact" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
+          <i class="fas fa-envelope text-xl"></i>
+          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Contact</span>
+        </a>
+      </div>
     </aside>
 
     <!-- MAIN CONTENT -->
