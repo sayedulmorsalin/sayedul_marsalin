@@ -1,1227 +1,2139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Md. Sayedul Marsalin | Flutter Developer</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md. Sayedul Marsalin | Flutter Developer</title>
+  <meta name="description" content="Passionate Flutter Developer with 1.5+ years of experience crafting beautiful, high-performance cross-platform applications. Based in Dhaka, Bangladesh." />
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --bg-primary:    #050510;
+      --bg-secondary:  #0d0d1f;
+      --bg-card:       rgba(255,255,255,0.04);
+      --bg-card-hover: rgba(255,255,255,0.07);
+      --border:        rgba(255,255,255,0.08);
+      --border-glow:   rgba(124,58,237,0.4);
 
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      --purple:   #7c3aed;
+      --cyan:     #06b6d4;
+      --emerald:  #10b981;
+      --amber:    #f59e0b;
+      --pink:     #ec4899;
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              poppins: ["Manrope", "sans-serif"],
-              display: ["Space Grotesk", "sans-serif"],
-            },
-            colors: {
-              primary: "#7c3aed",
-              secondary: "#10b981",
-              accent: "#f59e0b",
-              dark: "#1f2937",
-              light: "#f8fafc",
-            },
-            animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-              'slide-up': 'slide-up 0.8s ease-out',
-              'bounce-slow': 'bounce-slow 3s infinite',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0px)' },
-                '50%': { transform: 'translateY(-20px)' },
-              },
-              'pulse-glow': {
-                '0%, 100%': { opacity: 1 },
-                '50%': { opacity: 0.7 },
-              },
-              'slide-up': {
-                '0%': { transform: 'translateY(30px)', opacity: 0 },
-                '100%': { transform: 'translateY(0)', opacity: 1 },
-              },
-              'bounce-slow': {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              }
-            }
-          },
-        },
-      };
-    </script>
+      --grad-primary:  linear-gradient(135deg, #7c3aed, #06b6d4);
+      --grad-green:    linear-gradient(135deg, #10b981, #06b6d4);
+      --grad-warm:     linear-gradient(135deg, #f59e0b, #ec4899);
 
-    <style>
-      :root {
-        --sidebar-width: 5rem;
-        --mobile-nav-offset: calc(4.75rem + env(safe-area-inset-bottom, 0px));
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        background:
-          radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 30%),
-          radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.18), transparent 26%),
-          linear-gradient(180deg, #eff6ff 0%, #e0f2fe 40%, #f8fafc 100%);
-        color: #1f2937;
-        overflow-x: hidden;
-        width: 100%;
-      }
-      main,
-      section,
-      .glass-card,
-      .section-shell,
-      .hero-panel,
-      .hero-panel > div,
-      #home,
-      #home > div {
-        min-width: 0;
-        max-width: 100%;
-      }
-      .gradient-text {
-        background: linear-gradient(135deg, #5b21b6 0%, #0f766e 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-      .glass-card {
-        background: rgba(255, 255, 255, 0.72);
-        backdrop-filter: blur(18px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 25px 60px rgba(15, 23, 42, 0.08);
-      }
-      .sidebar {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(91, 33, 182, 0.86) 100%);
-        backdrop-filter: blur(16px);
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-        width: var(--sidebar-width);
-        overflow-y: auto;
-        overflow-x: hidden;
-      }
-      .sidebar-nav {
-        flex: 1;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        gap: 1rem;
-        min-height: 0;
-      }
-      .sidebar a {
-        position: relative;
-        transition: all 0.3s ease;
-        border-radius: 999px;
-        width: 100%;
-        max-width: 3.75rem;
-        min-height: 4.5rem;
-        padding: 0.5rem 0;
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.45rem;
-      }
-      .sidebar a span {
-        position: static !important;
-        margin-top: 0 !important;
-        width: auto !important;
-        line-height: 1;
-      }
-      .sidebar a.active {
-        background: rgba(255, 255, 255, 0.16);
-        color: #ffffff;
-        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
-      }
-      .profile-bg {
-        background:
-          radial-gradient(circle at top right, rgba(255, 255, 255, 0.22), transparent 24%),
-          linear-gradient(135deg, #4c1d95 0%, #0f766e 100%);
-        overflow: visible;
-      }
-      .profile-card {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-      .profile-card-body {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-      .profile-highlights {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.75rem;
-        margin-top: 1.5rem;
-      }
-      .profile-highlight {
-        border-radius: 1rem;
-        background: rgba(255, 255, 255, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.55);
-        padding: 0.9rem 0.85rem;
-        text-align: left;
-      }
-      .profile-highlight i {
-        color: #5b21b6;
-        margin-bottom: 0.45rem;
-      }
-      .profile-highlight strong {
-        display: block;
-        color: #0f172a;
-        font-size: 0.95rem;
-      }
-      .profile-highlight span {
-        display: block;
-        margin-top: 0.2rem;
-        color: #64748b;
-        font-size: 0.78rem;
-        line-height: 1.4;
-      }
-      .hover-lift {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .hover-lift:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 28px 60px rgba(76, 29, 149, 0.12);
-      }
-      .skill-circle {
-        position: relative;
-        width: 100px;
-        height: 100px;
-      }
-      .skill-circle svg {
-        transform: rotate(-90deg);
-      }
-      .hero-panel {
-        position: relative;
-        overflow: hidden;
-      }
-      .hero-panel::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(16, 185, 129, 0.08)),
-          radial-gradient(circle at top right, rgba(255, 255, 255, 0.75), transparent 30%);
-        pointer-events: none;
-      }
-      .section-shell {
-        position: relative;
-        padding: 2rem;
-        border-radius: 2rem;
-      }
-      .section-shell::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        pointer-events: none;
-      }
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.55rem 0.95rem;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.72);
-        color: #4c1d95;
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
-      }
-      .hero-stat {
-        background: rgba(255, 255, 255, 0.64);
-        border: 1px solid rgba(255, 255, 255, 0.45);
-      }
-      .spotlight-chip {
-        background: rgba(15, 23, 42, 0.78);
-        color: #fff;
-      }
-      .skill-percentage {
-        position: absolute;
-        top: calc(100% + 0.35rem);
-        left: 50%;
-        transform: translateX(-50%);
-        display: block;
-        font-size: 0.78rem;
-        font-weight: 800;
-        color: #1f2937;
-        line-height: 1;
-        white-space: nowrap;
-      }
-      .project-card {
-        position: relative;
-        overflow: hidden;
-      }
-      .project-card img {
-        height: 220px;
-      }
-      .project-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg, #7c3aed, #10b981);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.5s ease;
-      }
-      .project-card:hover::before {
-        transform: scaleX(1);
-      }
-      .project-copy {
-        min-height: 96px;
-      }
-      .type-badge {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        z-index: 10;
-      }
-      .contact-panel {
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.66)),
-          linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(16, 185, 129, 0.08));
-      }
-      section[id] {
-        scroll-margin-top: 1.5rem;
-      }
+      --text-primary:   #f0f4ff;
+      --text-secondary: #94a3b8;
+      --text-muted:     #475569;
 
-      @media (max-width: 1024px) {
-        .sidebar {
-          background: linear-gradient(180deg, rgba(49, 25, 109, 0.96) 0%, rgba(76, 29, 149, 0.94) 100%);
-          position: fixed !important;
-          left: 0 !important;
-          right: 0 !important;
-          bottom: 0 !important;
-          top: auto !important;
-          height: auto !important;
-          width: auto !important;
-          max-width: none !important;
-          display: flex !important;
-          flex-direction: row !important;
-          align-items: center !important;
-          justify-content: space-around !important;
-          gap: 0 !important;
-          padding: 0.5rem 0.6rem calc(0.5rem + env(safe-area-inset-bottom, 0px)) !important;
-          z-index: 50;
-          border-radius: 1.25rem 1.25rem 0 0 !important;
-          box-shadow: 0 -10px 28px rgba(15, 23, 42, 0.2);
-          overflow: hidden !important;
-          -webkit-overflow-scrolling: touch;
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-bottom: 0;
-          backdrop-filter: blur(18px);
-          transform: none !important;
-        }
-        .sidebar-brand {
-          display: none !important;
-        }
-        .sidebar-nav {
-          flex: 1 1 0 !important;
-          width: 100% !important;
-          flex-direction: row !important;
-          justify-content: space-around !important;
-          gap: 0 !important;
-        }
-        .sidebar a {
-          display: inline-flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          width: 2.55rem !important;
-          height: 2.55rem !important;
-          min-height: 2.55rem !important;
-          padding: 0 !important;
-          flex: 1 1 0 !important;
-          max-width: none !important;
-          border-radius: 999px !important;
-          gap: 0 !important;
-        }
-        .sidebar a span {
-          display: none !important;
-        }
-        .sidebar a i {
-          font-size: 1.05rem !important;
-        }
-        .sidebar a.active {
-          background: rgba(255, 255, 255, 0.18);
-          box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-        }
-        .sidebar.space-y-10 {
-          row-gap: 0 !important;
-        }
-        .section-shell {
-          padding: 1.25rem;
-          border-radius: 1.5rem;
-        }
-        main {
-          margin-bottom: var(--mobile-nav-offset) !important;
-          padding-bottom: var(--mobile-nav-offset);
-          padding-top: 1.5rem;
-        }
-        .project-copy {
-          min-height: 0;
-        }
-      }
-      @media (max-width: 640px) {
-        html,
-        body,
-        main {
-          max-width: 100vw;
-          overflow-x: hidden !important;
-        }
-        main {
-          padding-left: 0.75rem !important;
-          padding-right: 0.75rem !important;
-        }
-        #home {
-          gap: 1rem !important;
-          margin-bottom: 3rem !important;
-        }
-        .mt-24 {
-          margin-top: 3rem !important;
-        }
-        .section-shell {
-          padding: 0.9rem;
-        }
-        .hero-panel h1 {
-          font-size: 1.7rem !important;
-          line-height: 1.1 !important;
-          letter-spacing: -0.02em;
-          overflow-wrap: anywhere;
-          word-break: break-word;
-        }
-        .hero-panel .gradient-text {
-          display: block;
-          margin-top: 0.2rem;
-        }
-        .hero-panel p {
-          font-size: 0.95rem !important;
-          overflow-wrap: anywhere;
-        }
-        .hero-panel .mt-8 {
-          margin-top: 1.25rem !important;
-        }
-        .hero-panel .spotlight-chip,
-        .hero-panel .rounded-2xl {
-          width: 100%;
-        }
-        .profile-highlights {
-          grid-template-columns: 1fr;
-          gap: 0.65rem;
-          margin-top: 1rem;
-        }
-        .hero-panel a {
-          width: 100%;
-          justify-content: center;
-        }
-        .hero-panel,
-        .glass-card,
-        .section-shell,
-        #home,
-        #home > div {
-          width: 100%;
-          min-width: 0 !important;
-          max-width: 100% !important;
-        }
-      }
-      @media (max-width: 480px) {
-        main {
-          padding-left: 0.6rem !important;
-          padding-right: 0.6rem !important;
-        }
-        .hero-panel h1 {
-          font-size: 1.5rem !important;
-          line-height: 1.08 !important;
-        }
-        .hero-panel {
-          overflow: visible;
-        }
-      }
-    </style>
-  </head>
+      --font-body:    'Inter', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
 
-  <body class="font-poppins text-gray-800 selection:bg-primary/20">
-    <!-- Animated Background Elements -->
-    <div class="fixed inset-0 -z-10 overflow-hidden">
-      <div class="absolute top-0 left-1/4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-      <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s"></div>
-      <div class="absolute top-1/2 left-1/3 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 4s"></div>
+      --nav-w: 72px;
+      --radius-card: 20px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+
+    ::selection { background: rgba(124,58,237,0.35); }
+
+    /* ============================================================
+       SCROLLBAR
+    ============================================================ */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 4px; }
+
+    /* ============================================================
+       CANVAS BACKGROUND
+    ============================================================ */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       NOISE OVERLAY
+    ============================================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       SIDEBAR NAV
+    ============================================================ */
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: var(--nav-w);
+      background: rgba(5,5,16,0.85);
+      backdrop-filter: blur(24px);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0;
+      z-index: 100;
+    }
+
+    .sidebar-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--grad-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 40px;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(124,58,237,0.4);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .nav-link {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: var(--text-muted);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: var(--bg-card);
+    }
+
+    .nav-link.active {
+      color: #fff;
+      background: rgba(124,58,237,0.25);
+      box-shadow: 0 0 20px rgba(124,58,237,0.2);
+    }
+
+    .nav-link i { font-size: 16px; }
+
+    .nav-link .nav-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-tooltip {
+      position: absolute;
+      left: calc(100% + 16px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(20,20,40,0.95);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover .nav-tooltip {
+      opacity: 1;
+    }
+
+    .sidebar-social {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar-social a {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: var(--transition);
+    }
+
+    .sidebar-social a:hover { color: var(--text-primary); background: var(--bg-card); }
+
+    /* ============================================================
+       MAIN LAYOUT
+    ============================================================ */
+    .main {
+      margin-left: var(--nav-w);
+      position: relative;
+      z-index: 2;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #a78bfa;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title .line-1 { display: block; color: var(--text-primary); }
+    .hero-title .line-2 {
+      display: block;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--grad-primary);
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      color: #fff;
+      transition: var(--transition);
+      box-shadow: 0 0 30px rgba(124,58,237,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 45px rgba(124,58,237,0.5);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stat .num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-stat .label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Profile Card */
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(6,182,212,0.2));
+      border-radius: 24px 24px 80% 80% / 24px 24px 60% 60%;
+    }
+
+    .profile-card:hover {
+      border-color: rgba(124,58,237,0.3);
+      box-shadow: 0 0 50px rgba(124,58,237,0.1);
+    }
+
+    .profile-avatar-wrap {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 50px auto 16px;
+      z-index: 1;
+    }
+
+    .profile-avatar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      z-index: -1;
+      animation: rotate-border 4s linear infinite;
+    }
+
+    @keyframes rotate-border {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid var(--bg-primary);
+      object-fit: cover;
+    }
+
+    .profile-status {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      width: 18px;
+      height: 18px;
+      background: #10b981;
+      border-radius: 50%;
+      border: 2px solid var(--bg-primary);
+    }
+
+    .profile-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .profile-role {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      color: #a78bfa;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .profile-location {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .profile-socials {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .profile-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      transition: var(--transition);
+    }
+
+    .profile-social-btn:hover {
+      color: #fff;
+      border-color: var(--purple);
+      background: rgba(124,58,237,0.2);
+      transform: translateY(-2px);
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-tag {
+      padding: 4px 12px;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .btn-cv {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      background: var(--grad-primary);
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(124,58,237,0.3);
+    }
+
+    .btn-cv:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(124,58,237,0.45);
+    }
+
+    /* ============================================================
+       SECTION COMMONS
+    ============================================================ */
+    section { padding: 100px 0; }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-title .accent {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .section-header { margin-bottom: 56px; }
+
+    /* ============================================================
+       SKILLS SECTION
+    ============================================================ */
+    #skills { background: var(--bg-secondary); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+
+    .skill-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(124,58,237,0.3);
+      transform: translateY(-3px);
+    }
+
+    .skill-card:hover::after { transform: scaleX(1); }
+
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .skill-icon img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    .skill-info { flex: 1; min-width: 0; }
+
+    .skill-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .skill-bar-wrap {
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-bar {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--grad-primary);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .skill-bar.animated { transform: scaleX(1); }
+
+    .skill-pct {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-family: var(--font-mono);
+      margin-top: 4px;
+    }
+
+    .skills-category-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skills-category-title::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--grad-primary);
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       PROJECTS SECTION
+    ============================================================ */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: rgba(124,58,237,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 40px rgba(124,58,237,0.1);
+    }
+
+    .project-img-wrap {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .project-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-img-wrap img { transform: scale(1.06); }
+
+    .project-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5,5,16,0.85) 0%, transparent 50%);
+    }
+
+    .project-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .badge-purple { background: rgba(124,58,237,0.85); color: #fff; }
+    .badge-cyan   { background: rgba(6,182,212,0.85);  color: #fff; }
+    .badge-amber  { background: rgba(245,158,11,0.85); color: #fff; }
+
+    .project-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+
+    .project-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .project-link-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-link-icon {
+      color: #a78bfa;
+      border-color: rgba(124,58,237,0.35);
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .project-tag {
+      padding: 3px 10px;
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.18);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #a78bfa;
+      font-family: var(--font-mono);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .project-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .project-btn-gh {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .project-btn-gh:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--text-primary);
+    }
+
+    .project-btn-live {
+      background: var(--grad-primary);
+      color: #fff;
+    }
+
+    .project-btn-live:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ============================================================
+       CONTACT SECTION
+    ============================================================ */
+    #contact { background: var(--bg-secondary); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      height: 100%;
+    }
+
+    .contact-info-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact-info-sub {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(124,58,237,0.25);
+    }
+
+    .contact-item-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-item-icon.purple { background: rgba(124,58,237,0.15); color: #a78bfa; }
+    .contact-item-icon.cyan   { background: rgba(6,182,212,0.15);  color: #67e8f9; }
+    .contact-item-icon.amber  { background: rgba(245,158,11,0.15); color: #fcd34d; }
+
+    .contact-item-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+
+    .contact-item-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .contact-socials-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .contact-social-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 15px;
+      transition: var(--transition);
+    }
+
+    .contact-social-btn:hover {
+      background: rgba(124,58,237,0.2);
+      border-color: var(--purple);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Contact Form */
+    .contact-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 14px;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .form-input::placeholder { color: var(--text-muted); }
+
+    .form-input:focus {
+      border-color: rgba(124,58,237,0.5);
+      background: rgba(124,58,237,0.05);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--grad-primary);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(124,58,237,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(124,58,237,0.45);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-text span {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       FLOATING GLOW ORBS
+    ============================================================ */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb-1 {
+      width: 600px;
+      height: 600px;
+      background: rgba(124,58,237,0.12);
+      top: -200px;
+      left: -200px;
+      animation: orb-float-1 12s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: rgba(6,182,212,0.08);
+      bottom: -150px;
+      right: -100px;
+      animation: orb-float-2 15s ease-in-out infinite;
+    }
+
+    .orb-3 {
+      width: 400px;
+      height: 400px;
+      background: rgba(16,185,129,0.06);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      animation: orb-float-3 10s ease-in-out infinite;
+    }
+
+    @keyframes orb-float-1 {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(50px, 30px); }
+      66% { transform: translate(-30px, 50px); }
+    }
+
+    @keyframes orb-float-2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-40px, -60px); }
+    }
+
+    @keyframes orb-float-3 {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.15); }
+    }
+
+    /* ============================================================
+       FADE-IN ANIMATION
+    ============================================================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       MOBILE NAV (Bottom Bar)
+    ============================================================ */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(5,5,20,0.92);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      z-index: 100;
+      padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
+      justify-content: space-around;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .mobile-nav-link.active {
+      color: #fff;
+      background: rgba(124,58,237,0.2);
+    }
+
+    .mobile-nav-link i { font-size: 18px; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; gap: 40px; }
+      .profile-card { max-width: 380px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-w: 0px; }
+      .sidebar { display: none; }
+      .mobile-nav { display: flex; }
+      .main { margin-bottom: 80px; }
+      .container { padding: 0 20px; }
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 70px 0; }
+      .hero-title { font-size: 36px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+    }
+
+    /* ============================================================
+       TOAST NOTIFICATION
+    ============================================================ */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      padding: 14px 20px;
+      background: rgba(16,185,129,0.15);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 12px;
+      color: #6ee7b7;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      backdrop-filter: blur(12px);
+    }
+
+    .toast.show { transform: translateX(0); }
+  </style>
+</head>
+<body>
+
+  <!-- Background orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    Message sent successfully!
+  </div>
+
+  <!-- ========================================================
+       SIDEBAR NAVIGATION (Desktop)
+  ======================================================== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">SM</div>
+
+    <nav class="sidebar-nav">
+      <a href="#home" class="nav-link active" data-section="home" id="nav-home">
+        <i class="fas fa-house"></i>
+        <span class="nav-label">Home</span>
+        <span class="nav-tooltip">Home</span>
+      </a>
+      <a href="#skills" class="nav-link" data-section="skills" id="nav-skills">
+        <i class="fas fa-code"></i>
+        <span class="nav-label">Skills</span>
+        <span class="nav-tooltip">Skills</span>
+      </a>
+      <a href="#projects" class="nav-link" data-section="projects" id="nav-projects">
+        <i class="fas fa-briefcase"></i>
+        <span class="nav-label">Work</span>
+        <span class="nav-tooltip">Projects</span>
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact" id="nav-contact">
+        <i class="fas fa-envelope"></i>
+        <span class="nav-label">Say Hi</span>
+        <span class="nav-tooltip">Contact</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-social">
+      <a href="https://github.com/sayedulmorsalin" target="_blank" rel="noopener" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/sayedul-marsalin" target="_blank" rel="noopener" title="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
     </div>
+  </aside>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar fixed h-screen w-20 bg-primary shadow-lg flex flex-col items-center py-6 z-30">
-      <div class="sidebar-nav">
-        <a href="#about" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
-          <i class="fas fa-user text-xl"></i>
-          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">About</span>
-        </a>
-        <a href="#skills" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
-          <i class="fas fa-code text-xl"></i>
-          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Skills</span>
-        </a>
-        <a href="#projects" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
-          <i class="fas fa-folder text-xl"></i>
-          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Projects</span>
-        </a>
-        <a href="#contact" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110">
-          <i class="fas fa-envelope text-xl"></i>
-          <span class="text-xs absolute mt-1 w-full text-center hidden lg:block">Contact</span>
-        </a>
-      </div>
-    </aside>
+  <!-- ========================================================
+       MOBILE BOTTOM NAV
+  ======================================================== -->
+  <nav class="mobile-nav">
+    <a href="#home" class="mobile-nav-link active">
+      <i class="fas fa-house"></i>Home
+    </a>
+    <a href="#skills" class="mobile-nav-link">
+      <i class="fas fa-code"></i>Skills
+    </a>
+    <a href="#projects" class="mobile-nav-link">
+      <i class="fas fa-briefcase"></i>Work
+    </a>
+    <a href="#contact" class="mobile-nav-link">
+      <i class="fas fa-envelope"></i>Contact
+    </a>
+  </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="ml-0 lg:ml-20 max-w-7xl p-4 md:p-8">
-      <!-- HERO + PROFILE -->
-      <section id="about" class="grid lg:grid-cols-3 gap-8 items-start mb-20" data-aos="fade-up">
-        <!-- PROFILE CARD -->
-        <div class="glass-card profile-card section-shell text-center relative hover-lift animate-slide-up">
-          <div class="profile-bg h-32 rounded-2xl relative -mt-6 ">
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20"></div>
-            <img
-              src="https://avatars.githubusercontent.com/u/164027880?v=4"
-              alt="Profile"
-              class="w-32 h-32 rounded-full border-4 border-white absolute left-1/2 -bottom-16 -translate-x-1/2 shadow-lg"
-            />
-          </div>
+  <!-- ========================================================
+       MAIN CONTENT
+  ======================================================== -->
+  <main class="main">
 
-          <div class="profile-card-body">
-            <h2 class="mt-20 font-bold text-xl">Md. Sayedul Marsalin</h2>
-            <p class="gradient-text font-semibold text-lg mb-1">Flutter Developer</p>
-            <p class="text-gray-500 text-sm">
-              <i class="fas fa-location-dot mr-2 text-primary"></i>Dhaka, Bangladesh
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+    <section id="home">
+      <div class="container">
+        <div class="hero-content">
+
+          <!-- LEFT: Hero Text -->
+          <div>
+            <div class="hero-badge fade-up">
+              <span class="dot"></span>
+              Available for Freelance & Remote Work
+            </div>
+
+            <h1 class="hero-title fade-up" style="transition-delay:0.1s">
+              <span class="line-1">Crafting Beautiful</span>
+              <span class="line-2">Flutter Experiences</span>
+            </h1>
+
+            <p class="hero-sub fade-up" style="transition-delay:0.2s">
+              I'm <strong style="color:var(--text-primary)">Md. Sayedul Marsalin</strong>, a passionate Flutter Developer
+              with 1.5+ years of experience building pixel-perfect, high-performance cross-platform apps
+              for Android, iOS, and the web.
             </p>
 
-            <div class="flex justify-center gap-4 mt-4 text-gray-600">
-              <a
-                href="https://github.com/sayedulmorsalin"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-dark hover:text-white transition-all hover:scale-110"
-              >
-                <i class="fab fa-github text-lg"></i>
+            <div class="hero-actions fade-up" style="transition-delay:0.3s">
+              <a href="#projects" class="btn-primary">
+                <i class="fas fa-rocket"></i> View My Work
               </a>
-              <a
-                href="https://www.linkedin.com/in/sayedul-marsalin"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all hover:scale-110"
-              >
-                <i class="fab fa-linkedin text-lg"></i>
-              </a>
-              <a
-                href="https://www.facebook.com/sayadul.morsalin.94"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all hover:scale-110"
-              >
-                <i class="fab fa-facebook text-lg"></i>
+              <a href="#contact" class="btn-secondary">
+                <i class="fas fa-paper-plane"></i> Hire Me
               </a>
             </div>
 
-            <div class="profile-highlights">
-              <div class="profile-highlight">
-                <i class="fas fa-mobile-screen-button"></i>
-                <strong>Cross-platform apps</strong>
-                <span>Android, iOS, web, and clean responsive UI.</span>
+            <div class="hero-stats fade-up" style="transition-delay:0.4s">
+              <div class="hero-stat">
+                <span class="num">1.5+</span>
+                <span class="label">Years Exp.</span>
               </div>
-              <div class="profile-highlight">
-                <i class="fas fa-bolt"></i>
-                <strong>Fast delivery</strong>
-                <span>Performance-focused builds with polished UX.</span>
+              <div class="hero-stat">
+                <span class="num">20+</span>
+                <span class="label">Projects</span>
+              </div>
+              <div class="hero-stat">
+                <span class="num">15+</span>
+                <span class="label">Completed</span>
+              </div>
+              <div class="hero-stat">
+                <span class="num">100%</span>
+                <span class="label">Passion</span>
               </div>
             </div>
+          </div>
 
-            <div class="flex gap-3 mt-auto pt-6">
+          <!-- RIGHT: Profile Card -->
+          <div class="fade-up" style="transition-delay:0.2s">
+            <div class="profile-card">
+              <div class="profile-avatar-wrap">
+                <img
+                  src="https://avatars.githubusercontent.com/u/164027880?v=4"
+                  alt="Md. Sayedul Marsalin"
+                  class="profile-avatar"
+                />
+                <div class="profile-status"></div>
+              </div>
+
+              <p class="profile-name">Md. Sayedul Marsalin</p>
+              <p class="profile-role">Flutter Developer</p>
+              <p class="profile-location">
+                <i class="fas fa-location-dot" style="color:#a78bfa;font-size:11px"></i>
+                Dhaka, Bangladesh
+              </p>
+
+              <div class="profile-socials">
+                <a href="https://github.com/sayedulmorsalin" target="_blank" class="profile-social-btn" title="GitHub">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sayedul-marsalin" target="_blank" class="profile-social-btn" title="LinkedIn">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.facebook.com/sayadul.morsalin.94" target="_blank" class="profile-social-btn" title="Facebook">
+                  <i class="fab fa-facebook"></i>
+                </a>
+              </div>
+
+              <div class="profile-tags">
+                <span class="profile-tag">Flutter</span>
+                <span class="profile-tag">Firebase</span>
+                <span class="profile-tag">Dart</span>
+                <span class="profile-tag">GetX</span>
+                <span class="profile-tag">BLoC</span>
+              </div>
+
               <a
                 href="https://drive.google.com/drive/folders/12RRl8A1XY2qpZ-QDFxhDTFfJ85bovn-4?usp=sharing"
                 target="_blank"
-                rel="noopener noreferrer"
-                class="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl text-center font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                rel="noopener"
+                class="btn-cv"
               >
-                <i class="fas fa-download mr-2"></i>Download CV
+                <i class="fas fa-file-arrow-down"></i> Download Resume
               </a>
             </div>
           </div>
-        </div>
 
-        <!-- INTRO -->
-        <div class="lg:col-span-2 space-y-8">
-          <div class="glass-card hero-panel section-shell" data-aos="fade-left">
-            <div class="relative z-10">
-              <span class="eyebrow mb-5">
-                <i class="fas fa-sparkles"></i>
-                Flutter Portfolio
-              </span>
-              <h1 class="font-display text-3xl sm:text-5xl xl:text-6xl font-bold leading-tight text-slate-900">
-                Building sleek apps with
-                <span class="gradient-text">speed, polish, and care.</span>
-              </h1>
-              <p class="text-gray-600 mt-5 text-lg max-w-2xl leading-relaxed">
-                Passionate Flutter Developer with 1.5+ years of experience crafting beautiful, high-performance cross-platform applications.
-                I transform ideas into pixel-perfect reality with clean code and modern design principles.
-              </p>
-              <div class="mt-8 flex flex-wrap gap-3">
-                <a href="#projects" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-white font-semibold hover:bg-slate-800 transition-all">
-                  <i class="fas fa-arrow-right"></i>View Projects
-                </a>
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-xl bg-white/80 px-6 py-3 text-slate-800 font-semibold border border-white/60 hover:bg-white transition-all">
-                  <i class="fas fa-paper-plane"></i>Hire Me
-                </a>
-              </div>
-              <div class="mt-8 flex flex-wrap gap-3">
-                <div class="spotlight-chip rounded-2xl px-4 py-3 text-sm font-medium">
-                  <span class="text-emerald-300">Available</span> for freelance and remote roles
-                </div>
-                <div class="rounded-2xl bg-white/70 px-4 py-3 text-sm font-medium text-slate-700 border border-white/60">
-                  Focused on Flutter, Firebase, and performant UI
-                </div>
-              </div>
-            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SKILLS
+    ========================================================= -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge fade-up">
+            <i class="fas fa-sparkles"></i> Expertise
           </div>
-
-          <!-- STATS -->
-          <div class="grid sm:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="glass-card hero-stat p-6 rounded-2xl text-center hover-lift">
-              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                <i class="fas fa-calendar-alt text-primary text-xl"></i>
-              </div>
-              <p class="text-3xl font-bold text-dark">1.5+</p>
-              <p class="text-sm text-gray-500">Years Experience</p>
-            </div>
-            <div class="glass-card hero-stat p-6 rounded-2xl text-center hover-lift">
-              <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                <i class="fas fa-code-branch text-secondary text-xl"></i>
-              </div>
-              <p class="text-3xl font-bold text-dark">20+</p>
-              <p class="text-sm text-gray-500">Projects Built</p>
-            </div>
-            <div class="glass-card hero-stat p-6 rounded-2xl text-center hover-lift">
-              <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                <i class="fas fa-check-circle text-accent text-xl"></i>
-              </div>
-              <p class="text-3xl font-bold text-dark">15+</p>
-              <p class="text-sm text-gray-500">Completed Projects</p>
-            </div>
-          </div>
+          <h2 class="section-title fade-up">My Technical <span class="accent">Stack</span></h2>
+          <p class="section-desc fade-up">Technologies and tools I use to bring ideas to life</p>
         </div>
-      </section>
 
-      <!-- SKILLS -->
-      <section id="skills" class="mt-24 glass-card section-shell">
-        <div class="text-center mb-12" data-aos="fade-up">
-          <span class="eyebrow mb-4"><i class="fas fa-code"></i> Skills</span>
-          <h2 class="font-display text-3xl font-bold text-dark mb-3">My <span class="gradient-text">Expertise</span></h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">Technologies and tools I use to bring ideas to life</p>
-        </div>
-        
         <!-- Programming Languages -->
-        <div class="mb-12" data-aos="fade-up">
-          <h3 class="text-xl font-semibold text-dark mb-6 flex items-center gap-2">
-            <i class="fas fa-laptop-code text-primary"></i> Programming Languages
-          </h3>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
-            <!-- Dart -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="23"/>
-                </svg>
-                <img src="https://iili.io/fgXmqml.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">90%</span>
-              </div>
-              <p class="font-semibold text-dark">Dart</p>
+        <p class="skills-category-title fade-up">Programming Languages</p>
+        <div class="skills-grid fade-up">
+          <div class="skill-card" data-pct="90">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmqml.png" alt="Dart" />
             </div>
-
-            <!-- C++ -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="56"/>
-                </svg>
-                <img src="https://iili.io/fgXmd1n.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">75%</span>
+            <div class="skill-info">
+              <p class="skill-name">Dart</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.90"></div>
               </div>
-              <p class="font-semibold text-dark">C++</p>
+              <p class="skill-pct">90%</p>
             </div>
+          </div>
 
-            <!-- Java -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#f59e0b" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="56"/>
-                </svg>
-                <img src="https://iili.io/fgXmI1e.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">75%</span>
-              </div>
-              <p class="font-semibold text-dark">Java</p>
+          <div class="skill-card" data-pct="75">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmd1n.png" alt="C++" />
             </div>
-
-            <!-- Python -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="90"/>
-                </svg>
-                <img src="https://iili.io/fgXmXkv.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">60%</span>
+            <div class="skill-info">
+              <p class="skill-name">C++</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.75"></div>
               </div>
-              <p class="font-semibold text-dark">Python</p>
+              <p class="skill-pct">75%</p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-pct="75">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmI1e.png" alt="Java" />
+            </div>
+            <div class="skill-info">
+              <p class="skill-name">Java</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.75"></div>
+              </div>
+              <p class="skill-pct">75%</p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-pct="60">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmXkv.png" alt="Python" />
+            </div>
+            <div class="skill-info">
+              <p class="skill-name">Python</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.60"></div>
+              </div>
+              <p class="skill-pct">60%</p>
             </div>
           </div>
         </div>
 
         <!-- Frameworks & Libraries -->
-        <div class="mb-12" data-aos="fade-up" data-aos-delay="100">
-          <h3 class="text-xl font-semibold text-dark mb-6 flex items-center gap-2">
-            <i class="fas fa-cogs text-primary"></i> Frameworks & Libraries
-          </h3>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
-            <!-- Flutter -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="23"/>
-                </svg>
-                <img src="https://iili.io/fgXmnXS.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">90%</span>
-              </div>
-              <p class="font-semibold text-dark">Flutter</p>
+        <p class="skills-category-title fade-up">Frameworks &amp; Libraries</p>
+        <div class="skills-grid fade-up">
+          <div class="skill-card" data-pct="90">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmnXS.png" alt="Flutter" />
             </div>
-
-            <!-- Node.js -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="90"/>
-                </svg>
-                <img src="https://iili.io/fgXmEEF.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">60%</span>
+            <div class="skill-info">
+              <p class="skill-name">Flutter</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.90"></div>
               </div>
-              <p class="font-semibold text-dark">Node.js</p>
+              <p class="skill-pct">90%</p>
             </div>
+          </div>
 
-            <!-- .NET -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#f59e0b" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="113"/>
-                </svg>
-                <img src="https://iili.io/fgXmchB.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">50%</span>
-              </div>
-              <p class="font-semibold text-dark">.NET</p>
+          <div class="skill-card" data-pct="60">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmEEF.png" alt="Node.js" />
             </div>
-
-            <!-- React -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="113"/>
-                </svg>
-                <img src="https://iili.io/fgXmhpR.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">50%</span>
+            <div class="skill-info">
+              <p class="skill-name">Node.js</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.60"></div>
               </div>
-              <p class="font-semibold text-dark">React</p>
+              <p class="skill-pct">60%</p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-pct="50">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmchB.png" alt=".NET" />
+            </div>
+            <div class="skill-info">
+              <p class="skill-name">.NET</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.50"></div>
+              </div>
+              <p class="skill-pct">50%</p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-pct="50">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmhpR.png" alt="React" />
+            </div>
+            <div class="skill-info">
+              <p class="skill-name">React</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.50"></div>
+              </div>
+              <p class="skill-pct">50%</p>
             </div>
           </div>
         </div>
 
         <!-- Databases & Backend -->
-        <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
-          <h3 class="text-xl font-semibold text-dark mb-6 flex items-center gap-2">
-            <i class="fas fa-database text-primary"></i> Databases & Backend
-          </h3>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
-            <!-- Firebase -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="23"/>
-                </svg>
-                <img src="https://iili.io/fgXmCI2.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">90%</span>
-              </div>
-              <p class="font-semibold text-dark">Firebase</p>
+        <p class="skills-category-title fade-up">Databases &amp; Backend</p>
+        <div class="skills-grid fade-up">
+          <div class="skill-card" data-pct="90">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmCI2.png" alt="Firebase" />
             </div>
-
-            <!-- MongoDB -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#7c3aed" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="45"/>
-                </svg>
-                <img src="https://iili.io/fgXmAdb.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">80%</span>
+            <div class="skill-info">
+              <p class="skill-name">Firebase</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.90"></div>
               </div>
-              <p class="font-semibold text-dark">MongoDB</p>
+              <p class="skill-pct">90%</p>
             </div>
+          </div>
 
-            <!-- SQLite -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#f59e0b" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="68"/>
-                </svg>
-                <img src="https://iili.io/fgXmwIp.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">70%</span>
-              </div>
-              <p class="font-semibold text-dark">SQLite</p>
+          <div class="skill-card" data-pct="80">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmAdb.png" alt="MongoDB" />
             </div>
-
-            <!-- MySQL -->
-            <div class="glass-card p-5 rounded-2xl shadow text-center hover-lift group">
-              <div class="relative w-20 h-[6.1rem] mx-auto mb-3">
-                <svg class="w-full h-full">
-                  <circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"/>
-                  <circle cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="45"/>
-                </svg>
-                <img src="https://iili.io/fgXm7mQ.png" class="absolute inset-0 m-auto w-10 h-10 object-contain"/>
-                <span class="skill-percentage">80%</span>
+            <div class="skill-info">
+              <p class="skill-name">MongoDB</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.80"></div>
               </div>
-              <p class="font-semibold text-dark">MySQL</p>
+              <p class="skill-pct">80%</p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-pct="70">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXmwIp.png" alt="SQLite" />
+            </div>
+            <div class="skill-info">
+              <p class="skill-name">SQLite</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.70"></div>
+              </div>
+              <p class="skill-pct">70%</p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-pct="80">
+            <div class="skill-icon">
+              <img src="https://iili.io/fgXm7mQ.png" alt="MySQL" />
+            </div>
+            <div class="skill-info">
+              <p class="skill-name">MySQL</p>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" style="--w:0.80"></div>
+              </div>
+              <p class="skill-pct">80%</p>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- PROJECTS -->
-      <section id="projects" class="mt-24 glass-card section-shell">
-        <div class="text-center mb-12" data-aos="fade-up">
-          <span class="eyebrow mb-4"><i class="fas fa-briefcase"></i> Portfolio</span>
-          <h2 class="font-display text-3xl font-bold text-dark mb-3">Featured <span class="gradient-text">Projects</span></h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">A showcase of my recent work and contributions</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PROJECTS
+    ========================================================= -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge fade-up">
+            <i class="fas fa-folder-open"></i> Portfolio
+          </div>
+          <h2 class="section-title fade-up">Featured <span class="accent">Projects</span></h2>
+          <p class="section-desc fade-up">A showcase of my recent work and contributions</p>
         </div>
 
-        <div class="grid md:grid-cols-3 lg:grid-cols-3 gap-8">
+        <div class="projects-grid">
+
           <!-- DADU E-commerce -->
-          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left">
-            <div class=" overflow-hidden relative">
-              <img src="https://iili.io/fgpUWsp.png" alt="DADU App" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
-              <span class="type-badge px-3 py-1 bg-primary text-white text-xs rounded-full font-medium">Mobile App</span>
+          <div class="project-card fade-up">
+            <div class="project-img-wrap">
+              <img src="https://iili.io/fgpUWsp.png" alt="DADU E-commerce App" loading="lazy" />
+              <div class="project-img-overlay"></div>
+              <span class="project-badge badge-purple">Mobile App</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between mb-3">
-                <h3 class="font-bold text-lg text-dark">DADU E-commerce</h3>
-                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-primary transition"></i>
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3 class="project-title">DADU E-commerce</h3>
+                <div class="project-link-icon">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
               </div>
-              <p class="project-copy text-gray-600 text-sm mb-4">
-                Built full-stack e-commerce platform with authentication, cart, orders, and admin dashboard .Implemented fuzzysearch improving productdiscovery accuracy by50%. Reduced image loadtime by 35% using CloudinaryCDN and media optimization
+              <p class="project-desc">
+                Full-stack e-commerce platform with authentication, cart, orders, and admin dashboard. 
+                Implemented fuzzy search improving product discovery by 50%. Reduced image load time 
+                by 35% using Cloudinary CDN.
               </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Flutter</span>
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Firebase</span>
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Stripe API</span>
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">GetX</span>
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">Firebase</span>
+                <span class="project-tag">Stripe API</span>
+                <span class="project-tag">GetX</span>
               </div>
-              <div class="flex gap-3">
-                <a href="https://play.google.com/store/apps/details?id=com.sayedulmarsalin.dadu" target="_blank" class="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-2.5 rounded-lg text-center text-sm hover:shadow-lg transition">
-                  <i class="fas fa-download mr-2"></i>Download
+              <div class="project-actions">
+                <a href="https://github.com/sayedulmorsalin/DADU" target="_blank" class="project-btn project-btn-gh">
+                  <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://github.com/sayedulmorsalin/DADU" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
-                  <i class="fab fa-github mr-2"></i>Code
+                <a href="https://play.google.com/store/apps/details?id=com.sayedulmarsalin.dadu" target="_blank" class="project-btn project-btn-live">
+                  <i class="fas fa-download"></i> Download
                 </a>
               </div>
             </div>
           </div>
 
           <!-- DADU Admin Panel -->
-          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="100">
-            <div class=" overflow-hidden relative">
-              <img src="https://iili.io/fgpUVXR.png" alt="Admin Panel" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
-              <span class="type-badge px-3 py-1 bg-secondary text-white text-xs rounded-full font-medium">Admin Panel</span>
+          <div class="project-card fade-up" style="transition-delay:0.1s">
+            <div class="project-img-wrap">
+              <img src="https://iili.io/fgpUVXR.png" alt="DADU Admin Panel" loading="lazy" />
+              <div class="project-img-overlay"></div>
+              <span class="project-badge badge-cyan">Admin Panel</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between mb-3">
-                <h3 class="font-bold text-lg text-dark">DADU Admin Panel</h3>
-                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-secondary transition"></i>
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3 class="project-title">DADU Admin Panel</h3>
+                <div class="project-link-icon">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
               </div>
-              <p class="project-copy text-gray-600 text-sm mb-4">
-                Comprehensive admin dashboard for managing products, orders, users, and analytics for the DADU e-commerce platform.
+              <p class="project-desc">
+                Comprehensive admin dashboard for managing products, orders, users, and analytics 
+                for the DADU e-commerce platform with real-time data visualization.
               </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Flutter</span>
-                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Firebase</span>
-                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Cloud Functions</span>
-                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Charts</span>
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">Firebase</span>
+                <span class="project-tag">Cloud Functions</span>
+                <span class="project-tag">Charts</span>
               </div>
-              <div class="flex gap-3">
-                <a href="https://github.com/sayedulmorsalin/DADU_admin_panel" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
-                  <i class="fab fa-github mr-2"></i>Source Code
+              <div class="project-actions">
+                <a href="https://github.com/sayedulmorsalin/DADU_admin_panel" target="_blank" class="project-btn project-btn-gh">
+                  <i class="fab fa-github"></i> GitHub
                 </a>
               </div>
             </div>
           </div>
 
           <!-- Meal Assistant -->
-          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="200">
-            <div class=" overflow-hidden relative">
-              <img src="https://iili.io/fgpUhqN.png" alt="Meal Assistant" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
-              <span class="type-badge px-3 py-1 bg-accent text-white text-xs rounded-full font-medium">Calcute Meal</span>
+          <div class="project-card fade-up" style="transition-delay:0.2s">
+            <div class="project-img-wrap">
+              <img src="https://iili.io/fgpUhqN.png" alt="Meal Assistant App" loading="lazy" />
+              <div class="project-img-overlay"></div>
+              <span class="project-badge badge-amber">Health App</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between mb-3">
-                <h3 class="font-bold text-lg text-dark">Meal Assistant</h3>
-                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-accent transition"></i>
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3 class="project-title">Meal Assistant</h3>
+                <div class="project-link-icon">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
               </div>
-              <p class="project-copy text-gray-600 text-sm mb-4">
-                Smart meal tracking app with calorie counting, weekly meal plans, grocery lists, and nutrition insights.
+              <p class="project-desc">
+                Smart meal tracking app with calorie counting, weekly meal plans, grocery lists, 
+                and nutrition insights to help users maintain a healthy lifestyle.
               </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Flutter</span>
-                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Firebase</span>
-                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Nutrition API</span>
-                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Local Storage</span>
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">Firebase</span>
+                <span class="project-tag">Nutrition API</span>
+                <span class="project-tag">Local Storage</span>
               </div>
-              <div class="flex gap-3">
-                <a href="https://github.com/sayedulmorsalin/Meal_manager" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
-                  <i class="fab fa-github mr-2"></i>Source Code
+              <div class="project-actions">
+                <a href="https://github.com/sayedulmorsalin/Meal_manager" target="_blank" class="project-btn project-btn-gh">
+                  <i class="fab fa-github"></i> GitHub
                 </a>
               </div>
             </div>
           </div>
 
           <!-- EasyShare -->
-          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="300">
-            <div class=" overflow-hidden relative">
-              <img src="https://iili.io/fgpUMzv.png" alt="EasyShare" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
-              <span class="type-badge px-3 py-1 bg-primary text-white text-xs rounded-full font-medium">Utility App</span>
+          <div class="project-card fade-up" style="transition-delay:0.1s">
+            <div class="project-img-wrap">
+              <img src="https://iili.io/fgpUMzv.png" alt="EasyShare App" loading="lazy" />
+              <div class="project-img-overlay"></div>
+              <span class="project-badge badge-purple">Utility App</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between mb-3">
-                <h3 class="font-bold text-lg text-dark">EasyShare</h3>
-                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-primary transition"></i>
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3 class="project-title">EasyShare</h3>
+                <div class="project-link-icon">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
               </div>
-              <p class="project-copy text-gray-600 text-sm mb-4">
-                High-speed Wi-Fi Direct file sharing application with cross-platform support, encryption, and batch transfers.
+              <p class="project-desc">
+                High-speed Wi-Fi Direct file sharing application with cross-platform support, 
+                end-to-end encryption, and batch transfer capabilities.
               </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Flutter</span>
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Wi-Fi Direct</span>
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Encryption</span>
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Platform Channels</span>
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">Wi-Fi Direct</span>
+                <span class="project-tag">Encryption</span>
+                <span class="project-tag">Platform Channels</span>
               </div>
-              <div class="flex gap-3">
-                <a href="https://github.com/sayedulmorsalin/easyshare" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
-                  <i class="fab fa-github mr-2"></i>Source Code
+              <div class="project-actions">
+                <a href="https://github.com/sayedulmorsalin/easyshare" target="_blank" class="project-btn project-btn-gh">
+                  <i class="fab fa-github"></i> GitHub
                 </a>
               </div>
             </div>
           </div>
 
           <!-- Talksy -->
-          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="400">
-            <div class=" overflow-hidden relative">
-              <img src="https://iili.io/f6b2HGt.png" alt="Talksy" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
-              <span class="type-badge px-3 py-1 bg-secondary text-white text-xs rounded-full font-medium">Chat App</span>
+          <div class="project-card fade-up" style="transition-delay:0.2s">
+            <div class="project-img-wrap">
+              <img src="https://iili.io/f6b2HGt.png" alt="Talksy Chat App" loading="lazy" />
+              <div class="project-img-overlay"></div>
+              <span class="project-badge badge-cyan">Chat App</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between mb-3">
-                <h3 class="font-bold text-lg text-dark">Talksy</h3>
-                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-secondary transition"></i>
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3 class="project-title">Talksy</h3>
+                <div class="project-link-icon">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
               </div>
-              <p class="project-copy text-gray-600 text-sm mb-4">
-                Real-time chat application with voice messages, group chats, and end-to-end encryption.
+              <p class="project-desc">
+                Real-time chat application with voice messages, group chats, read receipts, 
+                and end-to-end encryption for secure messaging.
               </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Flutter</span>
-                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Firebase</span>
-                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Firebase_auth</span>
-                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded">Cloud_messaging</span>
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">Firebase</span>
+                <span class="project-tag">Firebase Auth</span>
+                <span class="project-tag">FCM</span>
               </div>
-              <div class="flex gap-3">
-                <a href="https://github.com/sayedulmorsalin/Talksy" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
-                  <i class="fab fa-github mr-2"></i>Source Code
+              <div class="project-actions">
+                <a href="https://github.com/sayedulmorsalin/Talksy" target="_blank" class="project-btn project-btn-gh">
+                  <i class="fab fa-github"></i> GitHub
                 </a>
               </div>
             </div>
           </div>
 
-          <!-- Moderator-manager  -->
-          <div class="project-card glass-card rounded-2xl shadow overflow-hidden hover-lift group" data-aos="flip-left" data-aos-delay="500">
-            <div class=" overflow-hidden relative">
-              <img src="https://iili.io/fPdiJwB.png" alt="Moderator manager" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
-              <span class="type-badge px-3 py-1 bg-accent text-white text-xs rounded-full font-medium">Finance App</span>
+          <!-- Moderator Manager -->
+          <div class="project-card fade-up" style="transition-delay:0.3s">
+            <div class="project-img-wrap">
+              <img src="https://iili.io/fPdiJwB.png" alt="Moderator Manager" loading="lazy" />
+              <div class="project-img-overlay"></div>
+              <span class="project-badge badge-amber">Finance App</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between mb-3">
-                <h3 class="font-bold text-lg text-dark">Moderator manager</h3>
-                <i class="fas fa-external-link-alt text-gray-400 group-hover:text-accent transition"></i>
+            <div class="project-body">
+              <div class="project-title-row">
+                <h3 class="project-title">Moderator Manager</h3>
+                <div class="project-link-icon">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
               </div>
-              <p class="project-copy text-gray-600 text-sm mb-4">
-                A comprehensive moderation and management system for online communities.
+              <p class="project-desc">
+                A comprehensive moderation and management system for online communities, featuring
+                admin monitoring, financial tracking, and real-time reporting.
               </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Flutter</span>
-                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Steed fast API</span>
-                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Calculation</span>
-                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded">Admin monitor and maintain</span>
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">FastAPI</span>
+                <span class="project-tag">Calculation</span>
+                <span class="project-tag">Admin Panel</span>
               </div>
-              <div class="flex gap-3">
-                <a href="https://github.com/sayedulmorsalin/Moderator-manager" target="_blank" class="flex-1 bg-dark text-white py-2.5 rounded-lg text-center text-sm hover:bg-gray-800 transition">
-                  <i class="fab fa-github mr-2"></i>Source Code
+              <div class="project-actions">
+                <a href="https://github.com/sayedulmorsalin/Moderator-manager" target="_blank" class="project-btn project-btn-gh">
+                  <i class="fab fa-github"></i> GitHub
                 </a>
               </div>
             </div>
           </div>
+
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="mt-24">
-        <div class="glass-card section-shell">
-          <div class="mb-10 text-center" data-aos="fade-up">
-            <span class="eyebrow mb-4"><i class="fas fa-envelope-open-text"></i> Contact</span>
-            <h2 class="font-display text-3xl font-bold text-dark mb-3">Let's create something <span class="gradient-text">valuable</span></h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Whether you need a polished mobile experience, a production-ready admin panel, or a reliable Flutter developer, I’m open to the conversation.</p>
+    <!-- =========================================================
+         CONTACT
+    ========================================================= -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge fade-up">
+            <i class="fas fa-envelope-open-text"></i> Contact
           </div>
-          <div class="grid md:grid-cols-2 gap-8">
-        <div class="glass-card contact-panel p-6 rounded-2xl hover-lift" data-aos="fade-right">
-          <h2 class="text-2xl font-bold text-dark mb-6">Get In <span class="gradient-text">Touch</span></h2>
-            <form
-              action="https://formspree.io/f/mojdandn"
-              method="POST"
-              class="space-y-4"
-            >
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-                class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary outline-none"
-              />
+          <h2 class="section-title fade-up">Let's Build Something <span class="accent">Remarkable</span></h2>
+          <p class="section-desc fade-up">
+            Open to freelance projects, remote roles, and exciting collaborations. Let's talk!
+          </p>
+        </div>
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-                class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary outline-none"
-              />
+        <div class="contact-grid">
 
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary outline-none"
-              />
+          <!-- Info Card -->
+          <div class="contact-info-card fade-up">
+            <h3 class="contact-info-title">Get In Touch</h3>
+            <p class="contact-info-sub">
+              Whether you need a polished mobile experience, a production-ready admin panel, 
+              or a reliable Flutter developer — I'm open to the conversation.
+            </p>
 
-              <textarea
-                name="message"
-                rows="5"
-                placeholder="Your Message"
-                required
-                class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary outline-none"
-              ></textarea>
+            <div class="contact-item">
+              <div class="contact-item-icon purple">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <p class="contact-item-label">Email</p>
+                <p class="contact-item-value">sayadulmorsalin123@gmail.com</p>
+              </div>
+            </div>
 
-              <button
-                type="submit"
-                class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-lg font-medium hover:shadow-lg transition"
-              >
+            <div class="contact-item">
+              <div class="contact-item-icon cyan">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <p class="contact-item-label">Phone</p>
+                <p class="contact-item-value">+880 1775 876544</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon amber">
+                <i class="fas fa-location-dot"></i>
+              </div>
+              <div>
+                <p class="contact-item-label">Location</p>
+                <p class="contact-item-value">Dhaka, Bangladesh (UTC+6)</p>
+              </div>
+            </div>
+
+            <div class="contact-item" style="border-color:rgba(16,185,129,0.2)">
+              <div class="contact-item-icon" style="background:rgba(16,185,129,0.15);color:#6ee7b7">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div>
+                <p class="contact-item-label">Working Hours</p>
+                <p class="contact-item-value">Mon–Fri · 9 AM – 6 PM · Reply &lt;24h</p>
+              </div>
+            </div>
+
+            <div class="contact-socials-row">
+              <a href="https://github.com/sayedulmorsalin" target="_blank" class="contact-social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/sayedul-marsalin" target="_blank" class="contact-social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://www.facebook.com/sayadul.morsalin.94" target="_blank" class="contact-social-btn" title="Facebook">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a href="https://twitter.com/sayedulmorsalin" target="_blank" class="contact-social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-card fade-up" style="transition-delay:0.1s">
+            <h3 class="contact-info-title">Send a Message</h3>
+            <p class="contact-info-sub">I usually reply within 24 hours.</p>
+
+            <form id="contact-form" action="https://formspree.io/f/mojdandn" method="POST">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="name">Name</label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="email">Email</label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="Project Inquiry" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="message">Message</label>
+                <textarea id="message" name="message" class="form-input" placeholder="Tell me about your project..." rows="5" required></textarea>
+              </div>
+
+              <button type="submit" class="form-submit" id="submit-btn">
+                <i class="fas fa-paper-plane"></i>
                 Send Message
               </button>
             </form>
+          </div>
 
         </div>
+      </div>
+    </section>
 
-        <div class="glass-card contact-panel p-8 rounded-2xl hover-lift" data-aos="fade-left">
-          <h3 class="text-xl font-bold text-dark mb-6">Contact Information</h3>
-          
-          <div class="space-y-6">
-            <div class="flex items-center gap-4 p-4 bg-primary/5 rounded-xl hover:bg-primary/10 transition">
-              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                <i class="fas fa-envelope text-primary text-xl"></i>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500">Email</p>
-                <p class="font-medium">sayadulmorsalin123@gmail.com</p>
-              </div>
-            </div>
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+    <footer>
+      <div class="container">
+        <p class="footer-text">
+          © 2025 <span>Md. Sayedul Marsalin</span>. Crafted with ❤️ &amp; Flutter passion.
+        </p>
+      </div>
+    </footer>
 
-            <div class="flex items-center gap-4 p-4 bg-secondary/5 rounded-xl hover:bg-secondary/10 transition">
-              <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center">
-                <i class="fas fa-phone text-secondary text-xl"></i>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500">Phone</p>
-                <p class="font-medium">+880 1775 876544</p>
-              </div>
-            </div>
+  </main>
 
-            <div class="flex items-center gap-4 p-4 bg-accent/5 rounded-xl hover:bg-accent/10 transition">
-              <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center">
-                <i class="fas fa-map-marker-alt text-accent text-xl"></i>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500">Location</p>
-                <p class="font-medium">Dhaka, Bangladesh</p>
-              </div>
-            </div>
-          </div>
+  <!-- ========================================================
+       SCRIPTS
+  ======================================================== -->
+  <script>
+    // ──────────────────────────────────────────────────────
+    // PARTICLE BACKGROUND
+    // ──────────────────────────────────────────────────────
+    const canvas = document.createElement('canvas');
+    canvas.id = 'bg-canvas';
+    canvas.style.cssText = 'position:fixed;inset:0;z-index:0;pointer-events:none;';
+    document.body.prepend(canvas);
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
 
-          <div class="mt-8">
-            <h4 class="font-semibold text-dark mb-4">Connect with me</h4>
-            <div class="flex gap-4">
-              <a href="https://github.com/sayedulmorsalin" target="_blank" 
-                 class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-dark hover:text-white transition-all hover:scale-110">
-                <i class="fab fa-github text-xl"></i>
-              </a>
-              <a href="https://www.linkedin.com/in/sayedul-marsalin" target="_blank" 
-                 class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all hover:scale-110">
-                <i class="fab fa-linkedin text-xl"></i>
-              </a>
-              <a href="https://www.facebook.com/sayadul.morsalin.94" target="_blank" 
-                 class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all hover:scale-110">
-                <i class="fab fa-facebook text-xl"></i>
-              </a>
-              <a href="https://twitter.com/sayedulmorsalin" target="_blank" 
-                 class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-blue-400 hover:text-white transition-all hover:scale-110">
-                <i class="fab fa-twitter text-xl"></i>
-              </a>
-            </div>
-          </div>
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
 
-          <div class="mt-8 pt-8 border-t border-gray-200">
-            <h4 class="font-semibold text-dark mb-4">Working Hours</h4>
-            <p class="text-gray-600 text-sm">Mon - Fri: 9:00 AM - 6:00 PM (UTC+6)</p>
-            <p class="text-gray-600 text-sm">Response Time: Within 24 hours</p>
-          </div>
-        </div>
-          </div>
-        </div>
-      </section>
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * W;
+        this.y = Math.random() * H;
+        this.r = Math.random() * 1.5 + 0.3;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.alpha = Math.random() * 0.4 + 0.1;
+        this.color = ['#7c3aed','#06b6d4','#10b981'][Math.floor(Math.random()*3)];
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.alpha;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
 
-      <!-- FOOTER -->
-      <footer class="mt-24 pb-8 text-center">
-        <div class="glass-card section-shell p-8">
-          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center animate-bounce-slow">
-            <span class="text-white font-bold text-xl">SM</span>
-          </div>
-          <h3 class="font-display text-2xl font-bold text-dark mb-2">Let's Build Something Amazing</h3>
-          <p class="text-gray-600 mb-6 max-w-md mx-auto">
-            Have a project in mind? I'd love to hear about it and help bring your ideas to life.
-          </p>
-          <a href="mailto:sayadulmorsalin123@gmail.com" 
-             class="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-            <i class="fas fa-paper-plane"></i> Start a Conversation
-          </a>
-          <div class="mt-8 pt-8 border-t border-gray-200">
-            <p class="text-gray-500 text-sm">© 2024 Md. Sayedul Marsalin. All rights reserved.</p>
-            <p class="text-gray-500 text-sm mt-1">Built with ❤️ using HTML, Tailwind CSS & JavaScript</p>
-          </div>
-        </div>
-      </footer>
-    </main>
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
 
-    <script>
+    // Draw connecting lines between nearby particles
+    function drawLines() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = '#7c3aed';
+            ctx.globalAlpha = (1 - dist / 100) * 0.08;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+      }
+    }
 
-      const form = document.querySelector("form");
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(); p.draw(); });
+      drawLines();
+      requestAnimationFrame(animate);
+    }
+    animate();
 
-      form.addEventListener("submit", async (e) => {
+    // ──────────────────────────────────────────────────────
+    // INTERSECTION OBSERVER FOR FADE-UP + SKILL BARS
+    // ──────────────────────────────────────────────────────
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    // Skill bar animation
+    const skillIo = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bars = entry.target.querySelectorAll('.skill-bar');
+          bars.forEach((bar, i) => {
+            const target = parseFloat(bar.style.getPropertyValue('--w'));
+            setTimeout(() => {
+              bar.style.transform = `scaleX(${target})`;
+            }, i * 100);
+          });
+          skillIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.skills-grid').forEach(g => skillIo.observe(g));
+
+    // ──────────────────────────────────────────────────────
+    // ACTIVE NAV LINK
+    // ──────────────────────────────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function updateNav() {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 200) current = s.id;
+      });
+      [...navLinks, ...mobileLinks].forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href')?.replace('#','') || link.dataset?.section || '';
+        if (href === current) link.classList.add('active');
+      });
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+    window.addEventListener('load', updateNav);
+
+    // ──────────────────────────────────────────────────────
+    // SMOOTH SCROLL
+    // ──────────────────────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
         e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
 
+    // ──────────────────────────────────────────────────────
+    // CONTACT FORM
+    // ──────────────────────────────────────────────────────
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const toast = document.getElementById('toast');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+      submitBtn.disabled = true;
+
+      try {
         const data = new FormData(form);
-
-        await fetch(form.action, {
-          method: "POST",
+        const res = await fetch(form.action, {
+          method: 'POST',
           body: data,
-          headers: { Accept: "application/json" }
+          headers: { Accept: 'application/json' }
         });
 
-        alert("Message sent successfully!");
-        form.reset();
-      });
-      // Initialize AOS
-      AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100,
-      });
-
-      // Smooth scrolling for navigation
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-
-      // Update active navigation
-      function updateActiveNav() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.sidebar a');
-        
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-          }
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href').substring(1) === current) {
-            link.classList.add('active');
-          }
-        });
+        if (res.ok) {
+          form.reset();
+          showToast('✓ Message sent! I\'ll reply soon.');
+        } else {
+          showToast('⚠ Something went wrong. Try emailing directly.', true);
+        }
+      } catch (err) {
+        showToast('⚠ Network error. Please try again.', true);
       }
 
-      window.addEventListener('scroll', updateActiveNav);
-      window.addEventListener('load', updateActiveNav);
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      submitBtn.disabled = false;
+    });
 
-      // Add hover effects for project cards
-      document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-10px)';
-        });
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0)';
-        });
-      });
-    </script>
-  </body>
+    function showToast(msg, isError = false) {
+      toast.innerHTML = `<i class="fas fa-${isError ? 'triangle-exclamation' : 'check-circle'}"></i> ${msg}`;
+      toast.style.background = isError ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.15)';
+      toast.style.borderColor = isError ? 'rgba(239,68,68,0.3)' : 'rgba(16,185,129,0.3)';
+      toast.style.color = isError ? '#fca5a5' : '#6ee7b7';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+  </script>
+</body>
 </html>
