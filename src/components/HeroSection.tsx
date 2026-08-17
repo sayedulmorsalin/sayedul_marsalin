@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Rocket, Send, Download, MapPin, Github, Linkedin, Facebook, Sparkles, Terminal, ShieldCheck, Play } from "lucide-react";
+import { Rocket, Send, Download, MapPin, Github, Linkedin, Facebook, Twitter, Sparkles, Terminal, ShieldCheck, Play } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import SpotlightCard from "./SpotlightCard";
 import SoundToggle, { playSoundEffect } from "./SoundToggle";
@@ -159,6 +159,7 @@ export default function HeroSection() {
                   let Icon = Github;
                   if (social.platform === "LinkedIn") Icon = Linkedin;
                   if (social.platform === "Facebook") Icon = Facebook;
+                  if (social.platform === "Twitter") Icon = Twitter;
                   return (
                     <a
                       key={social.platform}

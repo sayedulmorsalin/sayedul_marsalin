@@ -17,6 +17,7 @@ export interface Project {
   badgeText: string;
   badgeType: 'purple' | 'cyan' | 'amber';
   image: string;
+  screenshots: string[];
   description: string;
   keyHighlights?: string[];
   metrics?: { label: string; value: string }[];
@@ -147,19 +148,24 @@ export const projectsData: Project[] = [
     category: "mobile",
     badgeText: "Play Store App",
     badgeType: "purple",
-    image: "https://iili.io/fgpUWsp.png",
-    description: "Full-stack e-commerce platform featuring secure authentication, payment gateway integration, real-time cart synchronization, orders tracking, and admin controls.",
+    image: "/projects/dadu-ecommerce/screenshot1.png",
+    screenshots: [
+      "/projects/dadu-ecommerce/screenshot1.png",
+      "/projects/dadu-ecommerce/screenshot2.png",
+      "/projects/dadu-ecommerce/screenshot3.png",
+    ],
+    description: "Full-stack e-commerce platform featuring secure authentication, payment gateway integration (bKash/Stripe), real-time cart synchronization, order tracking, and admin controls.",
     keyHighlights: [
       "Implemented custom fuzzy search algorithm improving product discovery speed by 50%",
       "Optimized media asset caching reducing image load time by 35% via Cloudinary CDN",
-      "Integrated Stripe payments and Firebase real-time database"
+      "Integrated bKash and Stripe payment proofs with Firebase real-time database"
     ],
     metrics: [
       { label: "Search Speed", value: "+50%" },
       { label: "Load Time", value: "-35%" },
       { label: "Platform", value: "Android & iOS" }
     ],
-    tags: ["Flutter", "Firebase", "Stripe API", "GetX", "Cloudinary"],
+    tags: ["Flutter", "Firebase", "bKash & Stripe", "GetX", "Cloudinary"],
     githubUrl: "https://github.com/sayedulmorsalin/DADU",
     liveUrl: "https://play.google.com/store/apps/details?id=com.sayedulmarsalin.dadu",
     featured: true,
@@ -170,15 +176,20 @@ export const projectsData: Project[] = [
     category: "admin",
     badgeText: "Control Panel",
     badgeType: "cyan",
-    image: "https://iili.io/fgpUVXR.png",
+    image: "/projects/dadu-admin-panel/cover.png",
+    screenshots: [
+      "/projects/dadu-admin-panel/screenshot1.png",
+      "/projects/dadu-admin-panel/screenshot2.png",
+      "/projects/dadu-admin-panel/screenshot3.png",
+    ],
     description: "Enterprise administrative dashboard built to manage products, inspect order workflows, manage user roles, and visualize revenue analytics in real-time.",
     keyHighlights: [
-      "Real-time interactive revenue & order graphs using Flutter charts",
-      "Cloud Functions backend automation for order status updates",
+      "Real-time interactive revenue & user account analytics graph system",
+      "Cloud Functions backend automation for order status & shipping updates",
       "Granular user permissions and product inventory management"
     ],
     metrics: [
-      { label: "Sync Speed", value: "<100ms" },
+      { label: "Accounts", value: "20.4k+" },
       { label: "Analytics", value: "Real-time" }
     ],
     tags: ["Flutter Web", "Firebase", "Cloud Functions", "Syncfusion Charts"],
@@ -189,21 +200,27 @@ export const projectsData: Project[] = [
     id: "meal-assistant",
     title: "Meal Assistant AI",
     category: "health",
-    badgeText: "Health & Fitness",
+    badgeText: "Play Store App",
     badgeType: "amber",
-    image: "https://iili.io/fgpUhqN.png",
-    description: "Smart nutrition tracking application with micro-nutrient breakdown, meal calendar planning, automated grocery list generator, and BMI tracking.",
+    image: "/projects/meal-assistant/cover.png",
+    screenshots: [
+      "/projects/meal-assistant/screenshot1.png",
+      "/projects/meal-assistant/screenshot2.png",
+      "/projects/meal-assistant/screenshot3.png",
+    ],
+    description: "Smart mess management and nutrition tracking application with daily meal rate calculation, monthly calendar breakdown, member deposit logs, and shopping expense history.",
     keyHighlights: [
-      "Automated macro-nutrient calculations based on user goal metrics",
+      "Automated mess meal rate and deposit calculation engine",
       "Offline-first sync using local Hive storage and Firebase sync",
-      "Custom interactive calendar view for daily meal logs"
+      "Interactive monthly calendar breakdown for daily meal logs"
     ],
     metrics: [
       { label: "Offline First", value: "100%" },
-      { label: "Recipe DB", value: "10k+ items" }
+      { label: "Calculations", value: "Automated" }
     ],
-    tags: ["Flutter", "Hive DB", "Nutrition API", "BLoC"],
+    tags: ["Flutter", "Hive DB", "Firebase", "BLoC", "Play Store"],
     githubUrl: "https://github.com/sayedulmorsalin/Meal_manager",
+    liveUrl: "https://play.google.com/store/apps/details?id=com.sayedulmarsalin.meal_assistant",
     featured: true,
   },
   {
@@ -212,7 +229,12 @@ export const projectsData: Project[] = [
     category: "utility",
     badgeText: "Utility Tool",
     badgeType: "purple",
-    image: "https://iili.io/fgpUMzv.png",
+    image: "/projects/easyshare/cover.png",
+    screenshots: [
+      "/projects/easyshare/screenshot1.png",
+      "/projects/easyshare/screenshot2.png",
+      "/projects/easyshare/screenshot3.png",
+    ],
     description: "Ultra-fast Wi-Fi Direct peer-to-peer file transfer system featuring end-to-end encryption, cross-platform transfer, and batch file handling.",
     keyHighlights: [
       "Leveraged native Platform Channels for Wi-Fi Direct socket connections",
@@ -233,7 +255,12 @@ export const projectsData: Project[] = [
     category: "chat",
     badgeText: "Messenger",
     badgeType: "cyan",
-    image: "https://iili.io/f6b2HGt.png",
+    image: "/projects/talksy/cover.png",
+    screenshots: [
+      "/projects/talksy/screenshot1.png",
+      "/projects/talksy/screenshot2.png",
+      "/projects/talksy/screenshot3.png",
+    ],
     description: "Feature-rich real-time messaging mobile application supporting instant messaging, audio messages, media attachments, read status, and FCM notifications.",
     keyHighlights: [
       "Instant message dispatch using Firebase Firestore sockets",
@@ -249,24 +276,30 @@ export const projectsData: Project[] = [
     featured: true,
   },
   {
-    id: "moderator-manager",
-    title: "Community Moderator Hub",
-    category: "finance",
-    badgeText: "Management System",
-    badgeType: "amber",
-    image: "https://iili.io/fPdiJwB.png",
-    description: "Financial tracking and community oversight dashboard for managing moderator payouts, task verification, automated reports, and member logs.",
+    id: "aquawatch",
+    title: "AquaWatch System",
+    category: "utility",
+    badgeText: "Water Quality Tech",
+    badgeType: "cyan",
+    image: "/projects/aquawatch/cover.png",
+    screenshots: [
+      "/projects/aquawatch/screenshot1.png",
+      "/projects/aquawatch/screenshot2.png",
+      "/projects/aquawatch/screenshot3.png",
+      "/projects/aquawatch/screenshot4.png",
+    ],
+    description: "Environmental water quality monitoring platform with real-time interactive GIS map tracking, multi-parameter data entry (salinity, EC, temperature), geolocation tagging, and admin verification queues.",
     keyHighlights: [
-      "FastAPI integration for high-performance financial data crunching",
-      "Automated PDF earnings report generation",
-      "Role-based permission hierarchy"
+      "Interactive GIS Water Monitoring Map tracking 17+ regional stations across Bangladesh",
+      "Multi-parameter sensor measurement entry with automated device GPS location tagging",
+      "Role-based verification queue & admin status workflow dashboard"
     ],
     metrics: [
-      { label: "API Speed", value: "FastAPI" },
-      { label: "Reports", value: "Automated PDF" }
+      { label: "Stations", value: "17+ Active" },
+      { label: "Parameters", value: "Salinity, EC, Temp" }
     ],
-    tags: ["Flutter", "FastAPI", "Python", "REST API"],
-    githubUrl: "https://github.com/sayedulmorsalin/Moderator-manager",
+    tags: ["Flutter", "GIS Map API", "Firebase", "Geolocation", "Clean Arch"],
+    githubUrl: "https://github.com/sayedulmorsalin/AquaWatch",
     featured: true,
   },
 ];
@@ -280,9 +313,9 @@ export const experienceData: ExperienceItem[] = [
     type: "Remote / Full-time",
     description: "Designed, developed, and published production mobile and web applications with Flutter. Managed client requirements, app architecture, and database integrations.",
     achievements: [
-      "Published DADU E-Commerce application on Google Play Store with thousands of interactions",
+      "Published DADU E-Commerce and Meal Assistant applications on Google Play Store",
       "Architected 6+ production apps using clean BLoC and GetX state management patterns",
-      "Integrated payment gateways (Stripe), push notifications (FCM), and RESTful APIs"
+      "Integrated payment gateways (Stripe/bKash), push notifications (FCM), and RESTful APIs"
     ],
     skillsUsed: ["Flutter", "Dart", "Firebase", "GetX", "BLoC", "REST APIs", "Play Store Publishing"]
   },

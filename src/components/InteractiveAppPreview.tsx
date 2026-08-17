@@ -3,41 +3,32 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Smartphone, ShoppingBag, MessageSquare, HeartPulse, ShieldCheck, Sparkles, ExternalLink, ArrowRight } from "lucide-react";
+import { Smartphone, ShoppingBag, MessageSquare, HeartPulse, ShieldCheck, Sparkles, ExternalLink, ArrowRight, FolderOpen, Maximize2, X, Cpu, TrendingUp } from "lucide-react";
 import { projectsData } from "@/data/portfolioData";
 import { playSoundEffect } from "./SoundToggle";
 import SpotlightCard from "./SpotlightCard";
+import AutoScrollCarousel from "./AutoScrollCarousel";
 
 export default function InteractiveAppPreview() {
   const [selectedAppId, setSelectedAppId] = useState<string>("dadu-ecommerce");
-  const [activeScreenTab, setActiveScreenTab] = useState<"home" | "details" | "stats">("home");
+  const [activeScreenTab, setActiveScreenTab] = useState<"overview" | "features" | "stats">("overview");
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const selectedApp = projectsData.find((p) => p.id === selectedAppId) || projectsData[0];
+  const screenshots = selectedApp.screenshots || [selectedApp.image];
 
   const showcaseApps = [
     {
       id: "dadu-ecommerce",
       title: "DADU E-commerce",
-      category: "E-Commerce Mobile",
+      category: "Google Play Store App",
       icon: ShoppingBag,
-      color: "from-purple-500 to-indigo-600",
-      accent: "#7c3aed",
-    },
-    {
-      id: "talksy",
-      title: "Talksy Realtime Chat",
-      category: "Messaging App",
-      icon: MessageSquare,
-      color: "from-cyan-500 to-blue-600",
-      accent: "#06b6d4",
     },
     {
       id: "meal-assistant",
       title: "Meal Assistant AI",
-      category: "Health & Fitness",
+      category: "Google Play Store App",
       icon: HeartPulse,
-      color: "from-amber-500 to-rose-600",
-      accent: "#f59e0b",
     },
   ];
 
@@ -54,7 +45,7 @@ export default function InteractiveAppPreview() {
             Experience My <span className="bg-grad-primary bg-clip-text text-transparent">Apps Live</span>
           </h2>
           <p className="text-slate-400 text-base leading-relaxed">
-            Click through the apps below to test interactive mobile views, architecture stats, and production app features.
+            Clean mobile screenshots fitted seamlessly inside a 3D smartphone frame with interactive controls outside.
           </p>
         </div>
 
@@ -69,7 +60,7 @@ export default function InteractiveAppPreview() {
                 onClick={() => {
                   playSoundEffect("click");
                   setSelectedAppId(app.id);
-                  setActiveScreenTab("home");
+                  setActiveScreenTab("overview");
                 }}
                 onMouseEnter={() => playSoundEffect("hover")}
                 className={`px-5 py-3 rounded-2xl flex items-center gap-3 transition-all duration-300 ${
@@ -94,193 +85,176 @@ export default function InteractiveAppPreview() {
           })}
         </div>
 
-        {/* Main Grid: Interactive Smartphone Mockup + Info Panel */}
+        {/* Main Grid: Clean Smartphone Frame + Info Card Outside */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          {/* Left Column: 3D Smartphone Device Mockup */}
-          <div className="lg:col-span-6 flex justify-center">
-            <div className="relative w-full max-w-[340px] aspect-[9/18] bg-[#0c0c1e] rounded-[48px] p-3 border-4 border-slate-700/60 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_50px_rgba(124,58,237,0.2)] overflow-hidden group">
-              {/* Smartphone Notch / Island */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-30 flex items-center justify-end px-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse" />
+          {/* Left Column: Clean Smartphone Mockup (No Text Inside) */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="relative w-full max-w-[310px] sm:max-w-[330px] h-[570px] sm:h-[600px] bg-[#0c0c1e] rounded-[48px] p-3 border-4 border-slate-700/60 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_50px_rgba(124,58,237,0.25)] overflow-hidden group">
+              {/* Smartphone Dynamic Island Notch */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-30 flex items-center justify-between px-3 border border-white/10 shadow-md">
+                <span className="text-[9px] font-mono font-bold text-slate-400">DADU OS</span>
+                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#10b981]" />
               </div>
 
-              {/* Smartphone Screen Inner Frame */}
-              <div className="w-full h-full bg-[#050510] rounded-[38px] overflow-hidden relative flex flex-col justify-between pt-10 pb-6 px-4 border border-white/10">
-                {/* Screen Content View */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`${selectedApp.id}-${activeScreenTab}`}
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex-1 flex flex-col justify-between"
-                  >
-                    {activeScreenTab === "home" && (
-                      <div className="space-y-3">
-                        <div className="relative h-44 w-full rounded-2xl overflow-hidden border border-white/10 shadow-lg">
-                          <Image
-                            src={selectedApp.image}
-                            alt={selectedApp.title}
-                            fill
-                            className="object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-70" />
-                          <span className="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-brand-purple/90 text-[10px] font-bold text-white uppercase tracking-wider">
-                            {selectedApp.badgeText}
-                          </span>
-                        </div>
-
-                        <div>
-                          <h4 className="font-display font-bold text-white text-base">
-                            {selectedApp.title}
-                          </h4>
-                          <p className="text-slate-300 text-xs line-clamp-2 mt-1">
-                            {selectedApp.description}
-                          </p>
-                        </div>
-
-                        {/* Interactive Simulated Action */}
-                        <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                            <span className="text-[11px] font-mono text-slate-300">
-                              Status: Production Ready
-                            </span>
-                          </div>
-                          <span className="text-[10px] font-bold text-brand-cyan">60 FPS</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {activeScreenTab === "details" && (
-                      <div className="space-y-2 text-xs">
-                        <p className="font-bold text-brand-violet uppercase tracking-wider text-[10px]">
-                          Key Highlights
-                        </p>
-                        {selectedApp.keyHighlights ? (
-                          selectedApp.keyHighlights.map((h, i) => (
-                            <div
-                              key={i}
-                              className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-200 text-[11px] flex items-start gap-2"
-                            >
-                              <Sparkles className="w-3.5 h-3.5 text-brand-amber flex-shrink-0 mt-0.5" />
-                              <span>{h}</span>
-                            </div>
-                          ))
-                        ) : (
-                          <p className="text-slate-400">High performance cross-platform application.</p>
-                        )}
-                      </div>
-                    )}
-
-                    {activeScreenTab === "stats" && (
-                      <div className="space-y-3">
-                        <p className="font-bold text-brand-cyan uppercase tracking-wider text-[10px]">
-                          Performance Metrics
-                        </p>
-                        {selectedApp.metrics?.map((m, i) => (
-                          <div
-                            key={i}
-                            className="p-3 rounded-xl bg-brand-purple/15 border border-brand-purple/30 flex justify-between items-center"
-                          >
-                            <span className="text-xs text-slate-300">{m.label}</span>
-                            <span className="font-mono text-sm font-bold text-white">
-                              {m.value}
-                            </span>
-                          </div>
-                        ))}
-                        <div className="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono text-center">
-                          ✔ Verified 0 memory leaks
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Bottom Navigation Pill Inside Phone Screen */}
-                    <div className="mt-4 pt-2 border-t border-white/10 flex justify-around items-center">
-                      <button
-                        onClick={() => {
-                          playSoundEffect("click");
-                          setActiveScreenTab("home");
-                        }}
-                        className={`text-[10px] font-bold px-3 py-1 rounded-full transition-all ${
-                          activeScreenTab === "home"
-                            ? "bg-brand-purple text-white"
-                            : "text-slate-400 hover:text-white"
-                        }`}
-                      >
-                        App Screen
-                      </button>
-                      <button
-                        onClick={() => {
-                          playSoundEffect("click");
-                          setActiveScreenTab("details");
-                        }}
-                        className={`text-[10px] font-bold px-3 py-1 rounded-full transition-all ${
-                          activeScreenTab === "details"
-                            ? "bg-brand-purple text-white"
-                            : "text-slate-400 hover:text-white"
-                        }`}
-                      >
-                        Highlights
-                      </button>
-                      <button
-                        onClick={() => {
-                          playSoundEffect("click");
-                          setActiveScreenTab("stats");
-                        }}
-                        className={`text-[10px] font-bold px-3 py-1 rounded-full transition-all ${
-                          activeScreenTab === "stats"
-                            ? "bg-brand-purple text-white"
-                            : "text-slate-400 hover:text-white"
-                        }`}
-                      >
-                        Metrics
-                      </button>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Smartphone Home Indicator Bar */}
-                <div className="w-24 h-1 bg-white/40 rounded-full mx-auto mt-2" />
+              {/* Inner Smartphone Screen Frame - Displays Pure App Screenshot Only */}
+              <div className="w-full h-full bg-[#050510] rounded-[38px] overflow-hidden relative border border-white/10">
+                {/* 100% Full-Screen Screenshot Carousel fitting smartphone frame */}
+                <div className="absolute inset-0 z-0 w-full h-full">
+                  <AutoScrollCarousel
+                    images={screenshots}
+                    alt={selectedApp.title}
+                    aspectRatioClass="h-full w-full"
+                    objectFitClass="object-cover object-top"
+                    hideVignette={true}
+                  />
+                </div>
               </div>
             </div>
+
+            {/* Click to Expand Lightbox Button Outside Phone */}
+            <button
+              onClick={() => {
+                playSoundEffect("click");
+                setLightboxImage(screenshots[0]);
+              }}
+              className="mt-4 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-brand-violet hover:text-white hover:bg-white/10 transition-all flex items-center gap-2"
+            >
+              <Maximize2 className="w-3.5 h-3.5 text-brand-cyan" />
+              <span>Expand Screenshot Fullscreen</span>
+            </button>
           </div>
 
-          {/* Right Column: App Information & Highlights */}
-          <div className="lg:col-span-6 space-y-6">
-            <SpotlightCard className="p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="px-3 py-1 rounded-full bg-brand-purple/20 border border-brand-purple/40 text-brand-violet text-xs font-mono font-bold uppercase">
-                  {selectedApp.badgeText}
-                </span>
-                <span className="text-xs font-semibold text-slate-400">
-                  Category: {selectedApp.category}
-                </span>
+          {/* Right Column: App Information & Control Panel (Moved Outside Phone) */}
+          <div className="lg:col-span-7 space-y-6">
+            <SpotlightCard className="p-8 sm:p-10">
+              {/* Header Badge */}
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-brand-purple/20 border border-brand-purple/40 text-brand-violet text-xs font-mono font-bold uppercase">
+                    {selectedApp.badgeText}
+                  </span>
+                  <span className="text-xs font-semibold text-slate-400">
+                    {selectedApp.category}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Production Ready</span>
+                </div>
               </div>
 
+              {/* Title */}
               <h3 className="font-display text-3xl font-bold text-white mb-4">
                 {selectedApp.title}
               </h3>
 
-              <p className="text-slate-300 text-base leading-relaxed mb-6">
-                {selectedApp.description}
-              </p>
+              {/* Mode Tabs Outside Phone */}
+              <div className="flex items-center gap-2 mb-6 p-1.5 rounded-xl bg-white/5 border border-white/10 w-fit">
+                <button
+                  onClick={() => {
+                    playSoundEffect("click");
+                    setActiveScreenTab("overview");
+                  }}
+                  className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+                    activeScreenTab === "overview"
+                      ? "bg-brand-purple text-white shadow-md"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  App Overview
+                </button>
+                <button
+                  onClick={() => {
+                    playSoundEffect("click");
+                    setActiveScreenTab("features");
+                  }}
+                  className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+                    activeScreenTab === "features"
+                      ? "bg-brand-purple text-white shadow-md"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Engineering Highlights
+                </button>
+                <button
+                  onClick={() => {
+                    playSoundEffect("click");
+                    setActiveScreenTab("stats");
+                  }}
+                  className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+                    activeScreenTab === "stats"
+                      ? "bg-brand-purple text-white shadow-md"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Performance Metrics
+                </button>
+              </div>
 
-              {/* Key Highlights List */}
-              {selectedApp.keyHighlights && (
-                <div className="mb-6 space-y-2.5">
-                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                    Engineering Achievements
-                  </h4>
-                  {selectedApp.keyHighlights.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <Sparkles className="w-4 h-4 text-brand-cyan flex-shrink-0 mt-1" />
-                      <span className="text-sm text-slate-200">{item}</span>
+              {/* Dynamic Content Panel Outside Phone */}
+              <AnimatePresence mode="wait">
+                {activeScreenTab === "overview" && (
+                  <motion.div
+                    key="overview"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <p className="text-slate-300 text-base leading-relaxed mb-6">
+                      {selectedApp.description}
+                    </p>
+
+                    {/* Folder Location Guide */}
+                    <div className="p-3.5 rounded-xl bg-brand-purple/15 border border-brand-purple/30 text-xs text-brand-violet font-mono mb-6 flex items-center gap-2">
+                      <FolderOpen className="w-4 h-4 flex-shrink-0 text-brand-cyan" />
+                      <span>Image Directory: <strong>public/projects/{selectedApp.id}/</strong></span>
                     </div>
-                  ))}
-                </div>
-              )}
+                  </motion.div>
+                )}
+
+                {activeScreenTab === "features" && (
+                  <motion.div
+                    key="features"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="mb-6 space-y-3"
+                  >
+                    {selectedApp.keyHighlights ? (
+                      selectedApp.keyHighlights.map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                          <Sparkles className="w-4 h-4 text-brand-cyan flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-slate-200">{item}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-slate-400 text-sm">High performance Flutter cross-platform architecture.</p>
+                    )}
+                  </motion.div>
+                )}
+
+                {activeScreenTab === "stats" && (
+                  <motion.div
+                    key="stats"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="mb-6 grid grid-cols-2 sm:grid-cols-3 gap-3"
+                  >
+                    {selectedApp.metrics?.map((m, idx) => (
+                      <div key={idx} className="p-4 rounded-xl bg-white/5 border border-white/10 text-center">
+                        <TrendingUp className="w-4 h-4 text-brand-cyan mx-auto mb-1" />
+                        <p className="text-[10px] font-bold text-slate-400 uppercase">{m.label}</p>
+                        <p className="font-mono text-base font-bold text-white mt-1">{m.value}</p>
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Tech Tags */}
               <div className="flex flex-wrap gap-2 mb-8">
@@ -323,6 +297,46 @@ export default function InteractiveAppPreview() {
           </div>
         </div>
       </div>
+
+      {/* 100% Fullscreen Image Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxImage(null)}
+            className="fixed inset-0 bg-black/95 backdrop-blur-2xl z-[100] flex items-center justify-center p-4"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setLightboxImage(null)}
+              className="absolute top-6 right-6 z-50 w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all shadow-2xl"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="relative w-full max-w-4xl max-h-[90vh] flex flex-col items-center justify-center">
+              <div className="relative w-full h-[78vh] max-w-md mx-auto rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-black">
+                <Image
+                  src={lightboxImage}
+                  alt="Full-Screen Mobile App Screenshot"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              <div className="mt-4 text-center">
+                <p className="font-display text-lg font-bold text-white mb-1">
+                  {selectedApp.title} — App Screen View
+                </p>
+                <p className="text-xs text-slate-400">Click anywhere outside to exit</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { FolderOpen, Github, Download, ExternalLink, X, ArrowUpRight, Sparkles, TrendingUp } from "lucide-react";
 import { projectsData, Project } from "@/data/portfolioData";
 import SpotlightCard from "./SpotlightCard";
+import AutoScrollCarousel from "./AutoScrollCarousel";
 import { playSoundEffect } from "./SoundToggle";
 
 export default function ProjectsSection() {
@@ -53,7 +53,7 @@ export default function ProjectsSection() {
             Featured <span className="bg-grad-primary bg-clip-text text-transparent">Applications</span>
           </h2>
           <p className="text-slate-400 text-base max-w-xl">
-            Cross-platform mobile products, admin control suites, and high-performance utility tools.
+            Cross-platform mobile products, admin control suites, and high-performance utility tools with auto-scrolling live screenshots.
           </p>
         </div>
 
@@ -95,25 +95,22 @@ export default function ProjectsSection() {
               >
                 <SpotlightCard className="h-full flex flex-col justify-between group hover:border-brand-purple/40 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_30px_rgba(124,58,237,0.15)] transition-all duration-300">
                   <div>
-                    {/* Project Image Wrapper */}
-                    <div
-                      className="relative h-48 w-full overflow-hidden cursor-pointer"
-                      onClick={() => {
-                        playSoundEffect("click");
-                        setSelectedProject(project);
-                      }}
-                    >
-                      <Image
-                        src={project.image}
+                    {/* Auto-Scrolling Project Screenshots Wrapper */}
+                    <div className="relative">
+                      <AutoScrollCarousel
+                        images={project.screenshots || [project.image]}
                         alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        aspectRatioClass="h-72 sm:h-80 lg:h-96"
+                        objectFitClass="object-contain"
+                        onClick={() => {
+                          playSoundEffect("click");
+                          setSelectedProject(project);
+                        }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-80" />
 
                       {/* Badge */}
                       <span
-                        className={`absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md ${getBadgeStyle(
+                        className={`absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md z-20 ${getBadgeStyle(
                           project.badgeType
                         )}`}
                       >
@@ -211,7 +208,7 @@ export default function ProjectsSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Project Detail Modal */}
+        {/* Project Detail Modal with Auto-Scrolling Gallery */}
         <AnimatePresence>
           {selectedProject && (
             <motion.div
@@ -231,21 +228,18 @@ export default function ProjectsSection() {
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white hover:bg-black transition-colors"
+                  className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:bg-black transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
 
-                {/* Modal Header Image */}
-                <div className="relative h-64 w-full">
-                  <Image
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c20] via-transparent to-transparent" />
-                </div>
+                {/* Modal Header Auto-Scroll Carousel */}
+                <AutoScrollCarousel
+                  images={selectedProject.screenshots || [selectedProject.image]}
+                  alt={selectedProject.title}
+                  aspectRatioClass="h-80 sm:h-[450px]"
+                  objectFitClass="object-contain"
+                />
 
                 {/* Modal Body */}
                 <div className="p-6 sm:p-8">
@@ -256,6 +250,9 @@ export default function ProjectsSection() {
                       )}`}
                     >
                       {selectedProject.badgeText}
+                    </span>
+                    <span className="text-xs font-mono text-slate-400">
+                      ID: public/projects/{selectedProject.id}/
                     </span>
                   </div>
 
@@ -308,6 +305,12 @@ export default function ProjectsSection() {
                         </span>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Folder Location Reminder for User */}
+                  <div className="p-3.5 rounded-xl bg-brand-purple/10 border border-brand-purple/25 text-xs text-brand-violet mb-6 font-mono flex items-center gap-2">
+                    <FolderOpen className="w-4 h-4 flex-shrink-0" />
+                    <span>Upload new screenshots to: <strong>public/projects/{selectedProject.id}/</strong></span>
                   </div>
 
                   <div className="flex gap-4 pt-4 border-t border-white/10">

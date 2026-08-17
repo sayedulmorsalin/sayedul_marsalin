@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Home, Code2, Smartphone, Briefcase, Award, MessageCircleHeart, Mail, Github, Linkedin } from "lucide-react";
+import { Home, Code2, Smartphone, Briefcase, Award, Mail, Github, Linkedin } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import { playSoundEffect } from "./SoundToggle";
 
@@ -10,7 +10,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "skills", "showcase", "projects", "experience", "testimonials", "contact"];
+      const sections = ["home", "skills", "showcase", "projects", "experience", "contact"];
       const scrollPosition = window.scrollY + 250;
 
       for (const sectionId of sections) {
@@ -37,7 +37,6 @@ export default function Navigation() {
     { id: "showcase", label: "Apps", icon: Smartphone },
     { id: "projects", label: "Work", icon: Briefcase },
     { id: "experience", label: "Journey", icon: Award },
-    { id: "testimonials", label: "Reviews", icon: MessageCircleHeart },
     { id: "contact", label: "Contact", icon: Mail },
   ];
 
