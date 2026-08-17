@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Home, Code2, Briefcase, Mail, Github, Linkedin } from "lucide-react";
+import { Home, Code2, Smartphone, Briefcase, Award, MessageCircleHeart, Mail, Github, Linkedin } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
+import { playSoundEffect } from "./SoundToggle";
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "skills", "projects", "contact"];
+      const sections = ["home", "skills", "showcase", "projects", "experience", "testimonials", "contact"];
       const scrollPosition = window.scrollY + 250;
 
       for (const sectionId of sections) {
@@ -33,11 +34,15 @@ export default function Navigation() {
   const navItems = [
     { id: "home", label: "Home", icon: Home },
     { id: "skills", label: "Skills", icon: Code2 },
+    { id: "showcase", label: "Apps", icon: Smartphone },
     { id: "projects", label: "Work", icon: Briefcase },
+    { id: "experience", label: "Journey", icon: Award },
+    { id: "testimonials", label: "Reviews", icon: MessageCircleHeart },
     { id: "contact", label: "Contact", icon: Mail },
   ];
 
   const scrollToSection = (id: string) => {
+    playSoundEffect("click");
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -51,13 +56,14 @@ export default function Navigation() {
         {/* Logo Monogram */}
         <button
           onClick={() => scrollToSection("home")}
-          className="w-11 h-11 rounded-xl bg-grad-primary flex items-center justify-center font-display font-bold text-white text-sm shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:scale-105 transition-transform mb-10"
+          onMouseEnter={() => playSoundEffect("hover")}
+          className="w-11 h-11 rounded-xl bg-grad-primary flex items-center justify-center font-display font-bold text-white text-sm shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:scale-105 transition-transform mb-8"
         >
           SM
         </button>
 
         {/* Nav links */}
-        <nav className="flex-1 flex flex-col items-center justify-center gap-3">
+        <nav className="flex-1 flex flex-col items-center justify-center gap-2 overflow-y-auto scrollbar-none py-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
@@ -65,15 +71,16 @@ export default function Navigation() {
               <div key={item.id} className="relative group">
                 <button
                   onClick={() => scrollToSection(item.id)}
+                  onMouseEnter={() => playSoundEffect("hover")}
                   aria-label={item.label}
-                  className={`w-12 h-12 rounded-xl flex flex-col items-center justify-center gap-1 transition-all duration-300 ${
+                  className={`w-12 h-11 rounded-xl flex flex-col items-center justify-center gap-0.5 transition-all duration-300 ${
                     isActive
                       ? "text-white bg-brand-purple/25 shadow-[0_0_20px_rgba(124,58,237,0.3)] border border-brand-purple/40"
                       : "text-slate-400 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  <Icon className={`w-5 h-5 ${isActive ? "text-brand-violet" : ""}`} />
-                  <span className="text-[9px] font-semibold tracking-wider uppercase">
+                  <Icon className={`w-4 h-4 ${isActive ? "text-brand-violet" : ""}`} />
+                  <span className="text-[8px] font-semibold tracking-wider uppercase">
                     {item.label}
                   </span>
                 </button>
@@ -88,7 +95,7 @@ export default function Navigation() {
         </nav>
 
         {/* Sidebar Social Links */}
-        <div className="flex flex-col items-center gap-3 mt-auto">
+        <div className="flex flex-col items-center gap-2.5 mt-auto pt-4">
           {personalInfo.socials.slice(0, 2).map((social) => {
             const Icon = social.platform === "GitHub" ? Github : Linkedin;
             return (
@@ -98,6 +105,8 @@ export default function Navigation() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.platform}
+                onClick={() => playSoundEffect("click")}
+                onMouseEnter={() => playSoundEffect("hover")}
                 className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
               >
                 <Icon className="w-4 h-4" />
@@ -108,7 +117,7 @@ export default function Navigation() {
       </aside>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#050514]/92 backdrop-blur-xl border-t border-white/10 z-50 px-4 py-2 flex justify-around items-center pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#050514]/92 backdrop-blur-xl border-t border-white/10 z-50 px-2 py-1.5 flex justify-around items-center pb-[max(0.5rem,env(safe-area-inset-bottom))]">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -116,13 +125,13 @@ export default function Navigation() {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`flex flex-col items-center gap-1 px-4 py-2 rounded-xl text-[10px] font-semibold tracking-wider uppercase transition-all ${
+              className={`flex flex-col items-center gap-0.5 px-2.5 py-1.5 rounded-xl text-[9px] font-semibold tracking-wider uppercase transition-all ${
                 isActive
                   ? "text-white bg-brand-purple/25 shadow-[0_0_15px_rgba(124,58,237,0.3)] border border-brand-purple/30"
                   : "text-slate-400 hover:text-slate-200"
               }`}
             >
-              <Icon className="w-5 h-5" />
+              <Icon className="w-4 h-4" />
               <span>{item.label}</span>
             </button>
           );
