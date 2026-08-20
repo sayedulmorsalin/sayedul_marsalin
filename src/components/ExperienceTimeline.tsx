@@ -48,12 +48,17 @@ export default function ExperienceTimeline() {
                   </div>
 
                   {/* Experience Card */}
-                  <div className="w-full sm:w-[calc(50%-2rem)]">
+                  <article
+                    className="w-full sm:w-[calc(50%-2rem)]"
+                    aria-label={`${exp.title} at ${exp.company}`}
+                  >
                     <SpotlightCard className="p-6 sm:p-8">
                       {/* Period Badge */}
                       <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-violet font-mono text-xs font-semibold mb-4">
-                        <Calendar className="w-3.5 h-3.5" />
-                        <span>{exp.period}</span>
+                        <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+                        <time dateTime={exp.period.replace(" - ", "/").replace(" Present", "")}>
+                          {exp.period}
+                        </time>
                       </div>
 
                       <h3 className="font-display text-xl font-bold text-white mb-1">
@@ -61,7 +66,7 @@ export default function ExperienceTimeline() {
                       </h3>
 
                       <div className="flex items-center justify-between text-xs text-slate-400 mb-4 pb-3 border-b border-white/10">
-                        <span className="font-semibold text-brand-cyan">{exp.company}</span>
+                        <p className="font-semibold text-brand-cyan">{exp.company}</p>
                         <span className="px-2 py-0.5 rounded bg-white/5">{exp.type}</span>
                       </div>
 
@@ -70,17 +75,17 @@ export default function ExperienceTimeline() {
                       </p>
 
                       {/* Key Achievements */}
-                      <div className="space-y-2 mb-6">
+                      <ul className="space-y-2 mb-6" aria-label="Key achievements">
                         {exp.achievements.map((item, aIdx) => (
-                          <div key={aIdx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                          <li key={aIdx} className="flex items-start gap-2.5 text-xs text-slate-300">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                             <span>{item}</span>
-                          </div>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
 
                       {/* Tech Chips */}
-                      <div className="flex flex-wrap gap-1.5 pt-2">
+                      <div className="flex flex-wrap gap-1.5 pt-2" aria-label="Technologies used">
                         {exp.skillsUsed.map((skill) => (
                           <span
                             key={skill}
@@ -91,7 +96,7 @@ export default function ExperienceTimeline() {
                         ))}
                       </div>
                     </SpotlightCard>
-                  </div>
+                  </article>
                 </motion.div>
               );
             })}

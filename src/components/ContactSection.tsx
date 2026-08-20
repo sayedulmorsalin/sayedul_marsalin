@@ -107,24 +107,25 @@ export default function ContactSection() {
                 or custom cross-platform software architecture — I&apos;m ready to collaborate.
               </p>
 
-              <div className="space-y-4 mb-8">
+              <address className="not-italic space-y-4 mb-8">
                 {/* Email Item */}
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-brand-purple/30 transition-all group">
                   <div className="flex items-center gap-4 min-w-0">
                     <div className="w-11 h-11 rounded-xl bg-brand-purple/15 text-brand-violet flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-5 h-5" />
+                      <Mail className="w-5 h-5" aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Email</p>
-                      <p className="text-sm font-semibold text-white truncate">{personalInfo.email}</p>
+                      <a href={`mailto:${personalInfo.email}`} className="text-sm font-semibold text-white truncate hover:text-brand-violet transition-colors">{personalInfo.email}</a>
                     </div>
                   </div>
                   <button
                     onClick={() => copyToClipboard(personalInfo.email, "Email")}
                     className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
                     title="Copy Email"
+                    aria-label="Copy email address"
                   >
-                    <Copy className="w-4 h-4" />
+                    <Copy className="w-4 h-4" aria-hidden="true" />
                   </button>
                 </div>
 
@@ -132,26 +133,27 @@ export default function ContactSection() {
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-brand-cyan/30 transition-all group">
                   <div className="flex items-center gap-4 min-w-0">
                     <div className="w-11 h-11 rounded-xl bg-brand-cyan/15 text-brand-cyan flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-5 h-5" />
+                      <Phone className="w-5 h-5" aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Phone</p>
-                      <p className="text-sm font-semibold text-white truncate">{personalInfo.phone}</p>
+                      <a href={`tel:${personalInfo.phone.replace(/\s/g, '')}`} className="text-sm font-semibold text-white truncate hover:text-brand-cyan transition-colors">{personalInfo.phone}</a>
                     </div>
                   </div>
                   <button
                     onClick={() => copyToClipboard(personalInfo.phone, "Phone")}
                     className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
                     title="Copy Phone"
+                    aria-label="Copy phone number"
                   >
-                    <Copy className="w-4 h-4" />
+                    <Copy className="w-4 h-4" aria-hidden="true" />
                   </button>
                 </div>
 
                 {/* Location Item */}
                 <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
                   <div className="w-11 h-11 rounded-xl bg-brand-amber/15 text-brand-amber flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5" />
+                    <MapPin className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Location</p>
@@ -162,14 +164,14 @@ export default function ContactSection() {
                 {/* Working Hours */}
                 <div className="flex items-center gap-4 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
                   <div className="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-5 h-5" />
+                    <Clock className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Working Hours</p>
                     <p className="text-sm font-semibold text-slate-200">{personalInfo.workingHours}</p>
                   </div>
                 </div>
-              </div>
+              </address>
             </div>
 
             {/* Social Buttons */}
@@ -186,13 +188,14 @@ export default function ContactSection() {
                       key={social.platform}
                       href={social.url}
                       target="_blank"
-                      rel="noopener noreferrer"
-                      title={social.platform}
+                      rel="noopener noreferrer me"
+                      title={`${personalInfo.name} on ${social.platform}`}
+                      aria-label={`Visit ${personalInfo.name}'s ${social.platform} profile`}
                       onClick={() => playSoundEffect("click")}
                       onMouseEnter={() => playSoundEffect("hover")}
                       className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-brand-purple hover:bg-brand-purple/20 hover:-translate-y-1 transition-all"
                     >
-                      <Icon className="w-5 h-5" />
+                      <Icon className="w-5 h-5" aria-hidden="true" />
                     </a>
                   );
                 })}

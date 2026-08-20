@@ -58,14 +58,22 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            {/* Main Headline with Animated Typewriter Role */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
+            {/* Static h1 visible to screen readers & crawlers; hidden visually */}
+            <h1 className="sr-only">
+              {personalInfo.name} — Flutter Developer &amp; Cross-Platform Engineer
+            </h1>
+
+            {/* Animated Typewriter Headline (visual only, aria-hidden) */}
+            <div
+              aria-hidden="true"
+              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
+            >
               <span className="block text-slate-100">Crafting High-Perf</span>
               <span className="block bg-grad-primary bg-clip-text text-transparent min-h-[1.2em]">
                 {currentText}
                 <span className="animate-pulse text-brand-cyan">|</span>
               </span>
-            </h1>
+            </div>
 
             {/* Subtitle / Bio */}
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mb-8">
@@ -165,8 +173,9 @@ export default function HeroSection() {
                       key={social.platform}
                       href={social.url}
                       target="_blank"
-                      rel="noopener noreferrer"
-                      title={social.platform}
+                      rel="noopener noreferrer me"
+                      title={`${personalInfo.name} on ${social.platform}`}
+                      aria-label={`Visit ${personalInfo.name}'s ${social.platform} profile`}
                       onClick={() => playSoundEffect("click")}
                       onMouseEnter={() => playSoundEffect("hover")}
                       className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-brand-purple hover:bg-brand-purple/20 hover:-translate-y-1 transition-all"

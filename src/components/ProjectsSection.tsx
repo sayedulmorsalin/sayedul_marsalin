@@ -93,6 +93,7 @@ export default function ProjectsSection() {
                 transition={{ duration: 0.3 }}
                 key={project.id}
               >
+              <article aria-label={project.title}>
                 <SpotlightCard className="h-full flex flex-col justify-between group hover:border-brand-purple/40 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_30px_rgba(124,58,237,0.15)] transition-all duration-300">
                   <div>
                     {/* Auto-Scrolling Project Screenshots Wrapper */}
@@ -176,33 +177,36 @@ export default function ProjectsSection() {
 
                     {/* Action Buttons */}
                     <div className="flex gap-2">
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => playSoundEffect("click")}
-                        onMouseEnter={() => playSoundEffect("hover")}
-                        className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 font-semibold text-xs hover:bg-white/10 hover:text-white transition-colors"
-                      >
-                        <Github className="w-3.5 h-3.5" />
-                        <span>GitHub</span>
-                      </a>
-                      {project.liveUrl && (
                         <a
-                          href={project.liveUrl}
+                          href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`View ${project.title} source code on GitHub`}
                           onClick={() => playSoundEffect("click")}
                           onMouseEnter={() => playSoundEffect("hover")}
-                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-grad-primary text-white font-semibold text-xs shadow-[0_4px_16px_rgba(124,58,237,0.3)] hover:opacity-90 hover:-translate-y-0.5 transition-all"
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 font-semibold text-xs hover:bg-white/10 hover:text-white transition-colors"
                         >
-                          <Download className="w-3.5 h-3.5" />
-                          <span>App Store</span>
+                          <Github className="w-3.5 h-3.5" aria-hidden="true" />
+                          <span>GitHub</span>
                         </a>
-                      )}
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Download or view ${project.title} live`}
+                            onClick={() => playSoundEffect("click")}
+                            onMouseEnter={() => playSoundEffect("hover")}
+                            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-grad-primary text-white font-semibold text-xs shadow-[0_4px_16px_rgba(124,58,237,0.3)] hover:opacity-90 hover:-translate-y-0.5 transition-all"
+                          >
+                            <Download className="w-3.5 h-3.5" aria-hidden="true" />
+                            <span>App Store</span>
+                          </a>
+                        )}
                     </div>
                   </div>
                 </SpotlightCard>
+              </article>
               </motion.div>
             ))}
           </AnimatePresence>
