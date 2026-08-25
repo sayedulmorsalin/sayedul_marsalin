@@ -102,7 +102,7 @@ export default function InteractiveAppPreview() {
                 <div className="absolute inset-0 z-0 w-full h-full">
                   <AutoScrollCarousel
                     images={screenshots}
-                    alt={selectedApp.title}
+                    alt={`${selectedApp.title} Flutter Mobile App live demo preview by Md. Sayedul Marsalin`}
                     aspectRatioClass="h-full w-full"
                     objectFitClass="object-cover object-top"
                     hideVignette={true}

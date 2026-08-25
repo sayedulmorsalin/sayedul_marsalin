@@ -66,7 +66,7 @@ export default function AutoScrollCarousel({
         >
           <Image
             src={validImages[currentIndex]}
-            alt={`${alt} - Screenshot ${currentIndex + 1}`}
+            alt={`${alt} - Screenshot ${currentIndex + 1} - Mobile App Development by Md. Sayedul Marsalin`}
             fill
             className={`transition-transform duration-500 ${objectFitClass}`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

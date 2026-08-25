@@ -54,7 +54,7 @@ export default function SkillsSection() {
                       <div className="w-12 h-12 rounded-xl bg-[#0d0d1f] border border-white/10 flex items-center justify-center p-2.5 flex-shrink-0 group-hover:border-brand-purple/40 transition-colors">
                         <Image
                           src={skill.icon}
-                          alt={`${skill.name} icon`}
+                          alt={`${skill.name} technology — Mobile App Developer Sayedul Marsalin`}
                           width={28}
                           height={28}
                           className="object-contain"

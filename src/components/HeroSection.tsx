@@ -58,9 +58,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            {/* Static h1 visible to screen readers & crawlers; hidden visually */}
+            {/* Static h1 visible to screen readers & crawlers for SEO */}
             <h1 className="sr-only">
-              {personalInfo.name} — Flutter Developer &amp; Cross-Platform Engineer
+              {personalInfo.name} — Best App Developer in BD &amp; Senior Flutter Engineer
             </h1>
 
             {/* Animated Typewriter Headline (visual only, aria-hidden) */}
@@ -78,9 +78,9 @@ export default function HeroSection() {
             {/* Subtitle / Bio */}
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mb-8">
               I&apos;m{" "}
-              <strong className="text-white font-semibold">{personalInfo.name}</strong>, a
-              passionate Flutter Developer with 1.5+ years of experience building pixel-perfect,
-              high-performance cross-platform applications for Android, iOS, and Web.
+              <strong className="text-white font-semibold">{personalInfo.name}</strong>,
+              recognized as one of the <strong className="text-brand-violet font-semibold">best app developers in BD</strong> with 1.5+ years of experience engineering pixel-perfect,
+              high-performance cross-platform mobile apps for Android, iOS, and Web.
             </p>
 
             {/* Action Buttons */}
@@ -137,7 +137,7 @@ export default function HeroSection() {
                 <div className="relative w-full h-full rounded-full border-4 border-[#050510] overflow-hidden">
                   <Image
                     src={personalInfo.avatarUrl}
-                    alt={personalInfo.name}
+                    alt={`${personalInfo.name} — Best App Developer in BD & Senior Flutter Engineer`}
                     fill
                     className="object-cover"
                     priority
@@ -148,9 +148,9 @@ export default function HeroSection() {
               </div>
 
               {/* Name & Role */}
-              <h2 className="font-display text-xl font-bold text-white mb-1">
+              <p className="font-display text-xl font-bold text-white mb-1">
                 {personalInfo.name}
-              </h2>
+              </p>
               <p className="font-mono text-xs font-semibold text-brand-violet mb-2">
                 {personalInfo.role}
               </p>

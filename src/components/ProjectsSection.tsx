@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FolderOpen, Github, Download, ExternalLink, X, ArrowUpRight, Sparkles, TrendingUp } from "lucide-react";
+import { FolderOpen, Github, Download, ExternalLink, X, ArrowUpRight, Sparkles, TrendingUp, ChevronRight } from "lucide-react";
 import { projectsData, Project } from "@/data/portfolioData";
 import SpotlightCard from "./SpotlightCard";
 import AutoScrollCarousel from "./AutoScrollCarousel";
@@ -44,17 +45,29 @@ export default function ProjectsSection() {
     <section id="projects" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
-        <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-purple/15 border border-brand-purple/25 text-brand-violet text-xs font-bold uppercase tracking-wider mb-4">
-            <FolderOpen className="w-3.5 h-3.5" />
-            <span>Production Portfolio</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-purple/15 border border-brand-purple/25 text-brand-violet text-xs font-bold uppercase tracking-wider mb-4">
+              <FolderOpen className="w-3.5 h-3.5" />
+              <span>Production Portfolio</span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3">
+              Featured <span className="bg-grad-primary bg-clip-text text-transparent">Applications</span>
+            </h2>
+            <p className="text-slate-400 text-base max-w-xl">
+              Cross-platform mobile products, admin control suites, and high-performance utility tools with dedicated case studies.
+            </p>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3">
-            Featured <span className="bg-grad-primary bg-clip-text text-transparent">Applications</span>
-          </h2>
-          <p className="text-slate-400 text-base max-w-xl">
-            Cross-platform mobile products, admin control suites, and high-performance utility tools with auto-scrolling live screenshots.
-          </p>
+
+          <Link
+            href="/projects"
+            onClick={() => playSoundEffect("click")}
+            onMouseEnter={() => playSoundEffect("hover")}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all self-start md:self-auto"
+          >
+            <span>View All Projects</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
         {/* Category Filter Tabs */}
@@ -123,30 +136,26 @@ export default function ProjectsSection() {
                     <div className="p-6">
                       {/* Title Row */}
                       <div className="flex items-start justify-between gap-3 mb-3">
-                        <h3
-                          onClick={() => {
-                            playSoundEffect("click");
-                            setSelectedProject(project);
-                          }}
-                          className="font-display text-lg font-bold text-white hover:text-brand-violet cursor-pointer transition-colors"
+                        <Link
+                          href={`/projects/${project.id}`}
+                          onClick={() => playSoundEffect("click")}
+                          className="font-display text-lg font-bold text-white hover:text-brand-violet transition-colors"
                         >
                           {project.title}
-                        </h3>
-                        <button
-                          onClick={() => {
-                            playSoundEffect("click");
-                            setSelectedProject(project);
-                          }}
+                        </Link>
+                        <Link
+                          href={`/projects/${project.id}`}
+                          onClick={() => playSoundEffect("click")}
                           className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-brand-violet group-hover:border-brand-purple/40 transition-colors"
-                          aria-label="View Details"
+                          aria-label={`View ${project.title} Case Study`}
                         >
                           <ArrowUpRight className="w-4 h-4" />
-                        </button>
+                        </Link>
                       </div>
 
                       {/* Description */}
                       <p className="text-slate-300 text-xs sm:text-sm line-clamp-3 leading-relaxed mb-4">
-                        {project.description}
+                        {project.subtitle || project.description}
                       </p>
 
                       {/* Metric Pill if available */}
@@ -177,6 +186,15 @@ export default function ProjectsSection() {
 
                     {/* Action Buttons */}
                     <div className="flex gap-2">
+                        <Link
+                          href={`/projects/${project.id}`}
+                          onClick={() => playSoundEffect("click")}
+                          onMouseEnter={() => playSoundEffect("hover")}
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-brand-purple/20 border border-brand-purple/35 text-brand-violet font-semibold text-xs hover:bg-brand-purple/30 transition-colors"
+                        >
+                          <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                          <span>Case Study</span>
+                        </Link>
                         <a
                           href={project.githubUrl}
                           target="_blank"
@@ -184,10 +202,9 @@ export default function ProjectsSection() {
                           aria-label={`View ${project.title} source code on GitHub`}
                           onClick={() => playSoundEffect("click")}
                           onMouseEnter={() => playSoundEffect("hover")}
-                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 font-semibold text-xs hover:bg-white/10 hover:text-white transition-colors"
+                          className="inline-flex items-center justify-center gap-1 py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 font-semibold text-xs hover:bg-white/10 hover:text-white transition-colors"
                         >
                           <Github className="w-3.5 h-3.5" aria-hidden="true" />
-                          <span>GitHub</span>
                         </a>
                         {project.liveUrl && (
                           <a
@@ -197,10 +214,9 @@ export default function ProjectsSection() {
                             aria-label={`Download or view ${project.title} live`}
                             onClick={() => playSoundEffect("click")}
                             onMouseEnter={() => playSoundEffect("hover")}
-                            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-grad-primary text-white font-semibold text-xs shadow-[0_4px_16px_rgba(124,58,237,0.3)] hover:opacity-90 hover:-translate-y-0.5 transition-all"
+                            className="inline-flex items-center justify-center gap-1 py-2.5 px-3 rounded-xl bg-grad-primary text-white font-semibold text-xs shadow-[0_4px_16px_rgba(124,58,237,0.3)] hover:opacity-90 transition-all"
                           >
                             <Download className="w-3.5 h-3.5" aria-hidden="true" />
-                            <span>App Store</span>
                           </a>
                         )}
                     </div>
@@ -256,7 +272,7 @@ export default function ProjectsSection() {
                       {selectedProject.badgeText}
                     </span>
                     <span className="text-xs font-mono text-slate-400">
-                      ID: public/projects/{selectedProject.id}/
+                      ID: {selectedProject.id}
                     </span>
                   </div>
 
@@ -265,7 +281,7 @@ export default function ProjectsSection() {
                   </h3>
 
                   <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                    {selectedProject.description}
+                    {selectedProject.overview || selectedProject.description}
                   </p>
 
                   {/* Highlights */}
@@ -311,33 +327,23 @@ export default function ProjectsSection() {
                     </div>
                   </div>
 
-                  {/* Folder Location Reminder for User */}
-                  <div className="p-3.5 rounded-xl bg-brand-purple/10 border border-brand-purple/25 text-xs text-brand-violet mb-6 font-mono flex items-center gap-2">
-                    <FolderOpen className="w-4 h-4 flex-shrink-0" />
-                    <span>Upload new screenshots to: <strong>public/projects/{selectedProject.id}/</strong></span>
-                  </div>
-
-                  <div className="flex gap-4 pt-4 border-t border-white/10">
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-white/10">
+                    <Link
+                      href={`/projects/${selectedProject.id}`}
+                      className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-grad-primary text-white font-semibold text-sm shadow-lg hover:opacity-90 transition-opacity"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      <span>Open Full Case Study Page</span>
+                    </Link>
                     <a
                       href={selectedProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-white/10 border border-white/15 text-white font-semibold text-sm hover:bg-white/20 transition-colors"
+                      className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white/10 border border-white/15 text-white font-semibold text-sm hover:bg-white/20 transition-colors"
                     >
                       <Github className="w-4 h-4" />
-                      <span>View GitHub Repository</span>
+                      <span>GitHub</span>
                     </a>
-                    {selectedProject.liveUrl && (
-                      <a
-                        href={selectedProject.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-grad-primary text-white font-semibold text-sm shadow-lg hover:opacity-90 transition-opacity"
-                      >
-                        <Download className="w-4 h-4" />
-                        <span>Download Application</span>
-                      </a>
-                    )}
                   </div>
                 </div>
               </motion.div>
@@ -348,3 +354,4 @@ export default function ProjectsSection() {
     </section>
   );
 }
+

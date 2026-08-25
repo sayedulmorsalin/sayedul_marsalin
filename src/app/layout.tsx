@@ -3,7 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import BackgroundCanvas from "@/components/BackgroundCanvas";
 import Navigation from "@/components/Navigation";
-import { personalInfo, projectsData } from "@/data/portfolioData";
+import { personalInfo, projectsData, testimonialsData } from "@/data/portfolioData";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,54 +29,73 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${personalInfo.name} | Senior Flutter Developer & Cross-Platform Engineer`,
+    default: `${personalInfo.name} | Best App Developer in BD & Senior Flutter Engineer`,
     template: `%s | ${personalInfo.name}`,
   },
-  description: `${personalInfo.name} — ${personalInfo.bio} Specialized in Flutter, Dart, Firebase, GetX, BLoC, and Play Store App Development. Based in Dhaka, Bangladesh.`,
+  description: `${personalInfo.name} — Best App Developer in BD & Senior Flutter Specialist. 1.5+ years experience crafting 60 FPS Android, iOS, and Web applications with Firebase, GetX, and BLoC. Based in Dhaka, Bangladesh.`,
   keywords: [
+    "best app developer in bd",
+    "best app developer bangladesh",
+    "top app developer in bd",
+    "top mobile app developer in bangladesh",
+    "flutter developer bd",
+    "best flutter developer bangladesh",
+    "hire flutter developer bangladesh",
+    "hire app developer in bd",
+    "mobile app developer bangladesh",
+    "android app developer bd",
+    "ios app developer bangladesh",
+    "top mobile app developers in dhaka",
+    "cross platform app developer bangladesh",
+    "freelance mobile app developer bd",
+    "flutter firebase specialist bangladesh",
+    "dart developer dhaka",
+    "getx bloc expert flutter bd",
+    "clean architecture flutter developer",
+    "play store app developer bangladesh",
+    "custom mobile application development bd",
     "Md. Sayedul Marsalin",
     "Sayedul Morsalin",
-    "Sayedul Marsalin Flutter",
-    "Flutter Developer Bangladesh",
-    "Flutter Developer Dhaka",
-    "Dart Mobile App Developer",
-    "Cross-Platform App Developer Bangladesh",
-    "Firebase Mobile Apps",
-    "GetX State Management Flutter",
-    "BLoC Flutter Developer",
-    "DADU E-commerce App",
-    "Android App Developer Bangladesh",
-    "iOS App Developer Bangladesh",
-    "Freelance Flutter Engineer",
-    "Flutter GetX BLoC Expert",
-    "Flutter Firebase integration",
-    "Play Store App Developer Bangladesh",
-    "mobile app developer for hire",
     "sayedulmorsalin",
     "sayedulmarsalin",
+    "DADU E-commerce App",
+    "Meal Assistant AI",
+    "AquaWatch",
+    "EasyShare P2P",
+    "Talksy Realtime Chat",
   ],
+  icons: {
+    icon: [
+      { url: "/avatar.png", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/avatar.png",
+    apple: [
+      { url: "/avatar.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   authors: [{ name: personalInfo.name, url: siteUrl }],
   creator: personalInfo.name,
   publisher: personalInfo.name,
   alternates: {
     canonical: siteUrl,
   },
-  // Google Search Console verification token
   verification: {
     google: "0d9b4eaf2d8b5797",
   },
   openGraph: {
-    title: `${personalInfo.name} | Flutter & Cross-Platform Developer`,
-    description: `${personalInfo.bio} Specialized in Flutter, Firebase, GetX, BLoC, and cross-platform mobile development for Android & iOS.`,
+    title: `${personalInfo.name} | Best App Developer in BD & Flutter Specialist`,
+    description: `Leading cross-platform mobile developer from Dhaka, Bangladesh. Specialized in Flutter, Firebase, GetX, BLoC, and production Android & iOS apps.`,
     url: siteUrl,
-    siteName: `${personalInfo.name} Portfolio`,
+    siteName: `${personalInfo.name} — Best App Developer in BD`,
     images: [
       {
         url: personalInfo.avatarUrl,
         width: 400,
         height: 400,
-        alt: `${personalInfo.name} — Flutter Developer from Dhaka, Bangladesh`,
-        type: "image/jpeg",
+        alt: `${personalInfo.name} — Best App Developer in BD`,
+        type: "image/png",
       },
     ],
     locale: "en_US",
@@ -84,14 +103,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${personalInfo.name} | Flutter Developer`,
-    description: personalInfo.bio,
+    title: `${personalInfo.name} | Best App Developer in BD`,
+    description: `Best App Developer in BD specializing in Flutter, Firebase, and high-performance cross-platform mobile apps.`,
     site: "@sayedulmorsalin",
     creator: "@sayedulmorsalin",
     images: [
       {
         url: personalInfo.avatarUrl,
-        alt: `${personalInfo.name} — Flutter Developer`,
+        alt: `${personalInfo.name} — Flutter Developer in Bangladesh`,
       },
     ],
   },
@@ -106,7 +125,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // Geo tags for local SEO (Dhaka, Bangladesh)
   other: {
     "geo.region": "BD-C",
     "geo.placename": "Dhaka",
@@ -132,19 +150,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Rich Structured JSON-LD Data for Google SEO
+  // Rich Structured JSON-LD Data for Google SEO (Person + ProfessionalService)
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": `${siteUrl}/#person`,
     name: personalInfo.name,
-    alternateName: ["Sayedul Morsalin", "Sayedul Marsalin"],
-    jobTitle: personalInfo.role,
+    alternateName: [
+      "Sayedul Morsalin",
+      "Sayedul Marsalin",
+      "Best App Developer in BD",
+      "Top Flutter Developer Bangladesh",
+    ],
+    jobTitle: "Best App Developer in BD & Senior Flutter Engineer",
     description: personalInfo.bio,
     url: siteUrl,
     image: {
       "@type": "ImageObject",
-      url: personalInfo.avatarUrl,
+      url: `${siteUrl}${personalInfo.avatarUrl}`,
       width: 400,
       height: 400,
     },
@@ -161,35 +184,84 @@ export default function RootLayout({
       siteUrl,
     ],
     knowsAbout: [
+      "Mobile Application Development",
       "Flutter",
       "Dart",
       "Firebase",
       "GetX",
       "BLoC",
-      "Mobile Application Development",
-      "iOS Development",
       "Android Development",
-      "REST APIs",
+      "iOS Development",
       "Cross-Platform Development",
+      "REST APIs",
       "Clean Architecture",
     ],
     knowsLanguage: ["Bengali", "English"],
     worksFor: {
       "@type": "Organization",
-      name: "Freelance / Independent",
+      name: "Freelance Mobile App Engineer / Independent",
     },
     hasOccupation: {
       "@type": "Occupation",
-      name: "Flutter Developer",
+      name: "Flutter Developer & Mobile App Engineer",
       occupationLocation: {
         "@type": "City",
         name: "Dhaka",
       },
       description:
-        "Designs and develops cross-platform mobile applications for Android, iOS, and Web using Flutter and Dart.",
+        "Best App Developer in BD crafting cross-platform mobile apps for Android, iOS, and Web using Flutter and Dart.",
       skills:
         "Flutter, Dart, Firebase, GetX, BLoC, REST API, Clean Architecture",
     },
+  };
+
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${siteUrl}/#service`,
+    name: `${personalInfo.name} — Mobile App Development Services`,
+    image: `${siteUrl}${personalInfo.avatarUrl}`,
+    url: siteUrl,
+    telephone: personalInfo.phone,
+    email: personalInfo.email,
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Dhaka",
+      addressRegion: "Dhaka Division",
+      addressCountry: "BD",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 23.8103,
+      longitude: 90.4125,
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "09:00",
+      closes: "21:00",
+    },
+    areaServed: [
+      { "@type": "Country", name: "Bangladesh" },
+      { "@type": "AdministrativeArea", name: "Dhaka" },
+      { "@type": "Country", name: "Worldwide" },
+    ],
+    serviceType: [
+      "Flutter Mobile App Development",
+      "Android App Development",
+      "iOS App Development",
+      "Cross-Platform App Development",
+      "Firebase Backend Integration",
+    ],
   };
 
   const websiteJsonLd = {
@@ -197,7 +269,7 @@ export default function RootLayout({
     "@type": "WebSite",
     "@id": `${siteUrl}/#website`,
     url: siteUrl,
-    name: `${personalInfo.name} | Flutter Developer Portfolio`,
+    name: `${personalInfo.name} | Best App Developer in BD Portfolio`,
     description: personalInfo.bio,
     publisher: {
       "@id": `${siteUrl}/#person`,
@@ -208,7 +280,7 @@ export default function RootLayout({
   const projectsJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `Projects by ${personalInfo.name}`,
+    name: `Mobile Apps & Case Studies by ${personalInfo.name}`,
     itemListElement: projectsData.map((project, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -218,7 +290,7 @@ export default function RootLayout({
         description: project.description,
         applicationCategory: "MobileApplication",
         operatingSystem: "Android, iOS",
-        url: project.liveUrl || project.githubUrl,
+        url: `${siteUrl}/projects/${project.id}`,
         author: {
           "@id": `${siteUrl}/#person`,
         },
@@ -237,15 +309,61 @@ export default function RootLayout({
         name: "Home",
         item: siteUrl,
       },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${siteUrl}/projects`,
+      },
     ],
+  };
+
+  const reviewsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Mobile App Development Services by Md. Sayedul Marsalin",
+    image: `${siteUrl}${personalInfo.avatarUrl}`,
+    description: "Custom Flutter, Android, and iOS mobile application engineering services in Bangladesh and worldwide.",
+    brand: {
+      "@type": "Brand",
+      name: personalInfo.name,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: testimonialsData.length.toString(),
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: testimonialsData.map((t) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: t.name,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: t.rating.toString(),
+        bestRating: "5",
+      },
+      reviewBody: t.text,
+    })),
   };
 
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* Favicon icons */}
+        <link rel="icon" href="/avatar.png" type="image/png" />
+        <link rel="shortcut icon" href="/avatar.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/avatar.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
         />
         <script
           type="application/ld+json"
@@ -258,6 +376,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsJsonLd) }}
         />
       </head>
       <body

@@ -1,14 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Home, Code2, Smartphone, Briefcase, Award, Mail, Github, Linkedin } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Home, Code2, Smartphone, Briefcase, Award, Mail, Github, Linkedin, Sparkles } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import { playSoundEffect } from "./SoundToggle";
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
+    if (pathname !== "/") return;
+
     const handleScroll = () => {
       const sections = ["home", "skills", "showcase", "projects", "experience", "contact"];
       const scrollPosition = window.scrollY + 250;
@@ -29,7 +34,7 @@ export default function Navigation() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   const navItems = [
     { id: "home", label: "Home", icon: Home },
@@ -42,6 +47,11 @@ export default function Navigation() {
 
   const scrollToSection = (id: string) => {
     playSoundEffect("click");
+    if (pathname !== "/") {
+      router.push(`/#${id}`);
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -51,18 +61,26 @@ export default function Navigation() {
   return (
     <>
       {/* Desktop Sidebar Navigation */}
-      <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-[76px] bg-[#050510]/85 backdrop-blur-xl border-r border-white/10 flex-col items-center py-6 z-50 transition-all">
+      <aside
+        aria-label="Desktop Navigation Sidebar"
+        className="hidden lg:flex fixed left-0 top-0 bottom-0 w-[76px] bg-[#050510]/85 backdrop-blur-xl border-r border-white/10 flex-col items-center py-6 z-50 transition-all"
+      >
         {/* Logo Monogram */}
         <button
           onClick={() => scrollToSection("home")}
           onMouseEnter={() => playSoundEffect("hover")}
+          aria-label="Md. Sayedul Marsalin - Home"
+          title="Md. Sayedul Marsalin - Best App Developer in BD"
           className="w-11 h-11 rounded-xl bg-grad-primary flex items-center justify-center font-display font-bold text-white text-sm shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:scale-105 transition-transform mb-8"
         >
           SM
         </button>
 
         {/* Nav links */}
-        <nav className="flex-1 flex flex-col items-center justify-center gap-2 overflow-y-auto scrollbar-none py-2">
+        <nav
+          aria-label="Main Page Sections"
+          className="flex-1 flex flex-col items-center justify-center gap-2 overflow-y-auto scrollbar-none py-2"
+        >
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
